@@ -1,6 +1,6 @@
 sessionStorage.clear();
 const mail = document.getElementById('inputEmailAddress');
-const password = document.getElementById('inputPassword');
+const pwd = document.getElementById('inputPassword');
 
 $btnLogin.addEventListener('click', (event) =>{
     event.preventDefault();
@@ -10,7 +10,7 @@ $btnLogin.addEventListener('click', (event) =>{
 async function loginUser() {
     const user = {
         usrmail: mail.value,
-        password: password.value,
+        password: pwd.value,
     }
     const options = {
         method: 'POST',

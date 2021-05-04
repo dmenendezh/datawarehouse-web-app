@@ -7,6 +7,12 @@ const usr_profile = document.getElementById('cmbPerfil');
 const password = document.getElementById('inputPassword');
 const repeatPwd = document.getElementById('inputRepeatPwd');
 
+
+$btnCreate.addEventListener('click', (event) =>{
+    $layoutAuthentication_content.classList.remove('hidden');
+    $cardHeader.classList.add('hidden');
+});
+
 $btnRegister.addEventListener('click', (event) =>{
     event.preventDefault();
     registerUser();
@@ -39,6 +45,6 @@ async function registerUser() {
     console.log(data);
     if (response.status === 201) {
         console.log(data);
-        window.location.href = 'index.html';
+        window.location.href = 'users.html';
     }
 }

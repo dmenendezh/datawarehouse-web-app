@@ -10234,3 +10234,11 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
 }
+
+.hidden{
+  display: none;
+}
+
+.btn-register{
+  margin-left: 40rem;
+}
