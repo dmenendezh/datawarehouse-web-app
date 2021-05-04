@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const db = require("../../database/dbConnector");
+const cors = require('cors')
 
 
 const JWT = require('jsonwebtoken');
@@ -11,7 +12,7 @@ const mdGlobal = require('../../middlewares/mdGlobal');*/
 const Users = require('../../models/Usuarios');
 
 
-router.post('/', /*mdGlobal.checkEmptyBody, mdUsers.requireDataSendend,*/ async (req, res) => {
+router.post('/', cors(),/*mdGlobal.checkEmptyBody, mdUsers.requireDataSendend,*/ async (req, res) => {
     const {username, password} = req.body;
 
     const userFound = await Users.usersModel.findOne({
@@ -32,5 +33,14 @@ router.post('/', /*mdGlobal.checkEmptyBody, mdUsers.requireDataSendend,*/ async 
         });
     }
 });
+
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+  });
+router.use(cors());
+
 
 module.exports = router

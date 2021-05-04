@@ -15,16 +15,21 @@ async function loginUser() {
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
-        headers: {
-            "Content-Type": "application/json"
-        }
+        headers: {    
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*'}
     }
+
+    console.log(user);
+
     const response = await fetch('http://localhost:3000/users/login', options)
     const data = await response.json()
     if (response.status === 200) {
         console.log(data);
         saveToken(data);
-        window.location.href = 'users.html';
+        window.location.href = 'dashboard.html';
     }
 }
 
