@@ -1,15 +1,15 @@
 sessionStorage.clear();
-const username = document.getElementById('inputEmailAddress');
+const mail = document.getElementById('inputEmailAddress');
 const password = document.getElementById('inputPassword');
 
 $btnLogin.addEventListener('click', (event) =>{
     event.preventDefault();
-    loginUser()
+    loginUser();
 });
 
 async function loginUser() {
     const user = {
-        username: username.value,
+        usrmail: mail.value,
         password: password.value,
     }
     const options = {

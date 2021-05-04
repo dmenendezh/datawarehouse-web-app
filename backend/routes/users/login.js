@@ -12,12 +12,14 @@ const mdGlobal = require('../../middlewares/mdGlobal');*/
 const Users = require('../../models/Usuarios');
 
 
-router.post('/', cors(),/*mdGlobal.checkEmptyBody, mdUsers.requireDataSendend,*/ async (req, res) => {
-    const {username, password} = req.body;
+router.post('/',/*mdGlobal.checkEmptyBody, mdUsers.requireDataSendend,*/ async (req, res) => {
+    const {usrmail, password} = req.body;
 
+    console.log(usrmail);
+    console.log(password);
     const userFound = await Users.usersModel.findOne({
-        where: { usr_login: username, usr_password: password }
-    }).catch(err => catchDatabaseEror(err, res));
+        where: { usr_email: usrmail, usr_password: password }
+    }).catch(err => throwException(err, res));
 
     if(!userFound) {
         res.status(404).json({
@@ -33,6 +35,13 @@ router.post('/', cors(),/*mdGlobal.checkEmptyBody, mdUsers.requireDataSendend,*/
         });
     }
 });
+
+const throwException = (err, res) => {
+    res.status(500).json({
+        message: 'There was a problem with the database.',
+        error: err
+    });
+};
 
 router.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
