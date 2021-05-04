@@ -14,6 +14,7 @@ const cors = require('cors')
 //login
 server.use('/users/login', require('../backend/routes/users/login'));
 server.use('/users/register', require('../backend/routes/users/register'));
+server.use('/users/listall', require('../backend/routes/users/listall'));
 
 server.use(cors());
 
