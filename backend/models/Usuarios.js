@@ -12,11 +12,11 @@ const usersModel = sequelize.define('users', {
         type: DataTypes.STRING,
         allowNull:false
     },
-    usr_phone: {
+    usr_name: {
         type: DataTypes.STRING,
         allowNull:false
     },
-    usr_address: {
+    usr_surname: {
         type: DataTypes.STRING,
         allowNull:false
     },
