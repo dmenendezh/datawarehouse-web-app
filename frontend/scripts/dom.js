@@ -6,3 +6,7 @@ const $layoutAuthentication_content = document.querySelector('#layoutAuthenticat
 const $cardHeader = document.querySelector('#cardHeader');
 const $dataTable = document.querySelector('#dataTable');
 
+const $userSearcher = document.querySelector('#userSearcher');
+
+
+

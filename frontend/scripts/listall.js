@@ -15,8 +15,8 @@ async function listallUsers() {
     const data = await response.json()
     if (response.status === 200) {
         console.log("resultado");
-        console.log(data);
-        console.log(data.quantity);
+       // console.log(data);
+       // console.log(data.quantity);
 
         for (let i = 0; i < data.quantity; i++) {
             console.log(data.usr[i].usr_login);
