@@ -27,7 +27,7 @@ router.post('/',/*mdGlobal.checkEmptyBody, mdUsers.requireDataSendend,*/ async (
         });
     } else {
         res.locals.userLogged = userFound;
-        const token = await JWT.sign({ usr_id: userFound.usr_id, usr_login: userFound.usr_login, usr_name: userFound.usr_name, usr_surname: userFound.usr_surname, admin: userFound.usr_admin_flag }, JWTSign);
+        const token = await JWT.sign({ usr_id: userFound.usr_id, usr_login: userFound.usr_login, usr_name: userFound.usr_name, usr_surname: userFound.usr_surname, admin: userFound.usr_admin_flag }, JWTSign, {expiresIn:"1h"});
 
         res.status(200).json({
             message: 'Successfully logged in.',

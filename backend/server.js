@@ -3,11 +3,14 @@ const express = require("express");
 
 const server = express();
 const bodyParser = require("body-parser");
+const compression = require('compression');
 
 //3. agregar middlewares globales
 server.use(express.json()); // parsear el body a un objeto
 server.use(bodyParser.json());
 const cors = require('cors')
+server.use(compression());
+
 
 /* RUTAS */
 
@@ -15,12 +18,12 @@ const cors = require('cors')
 server.use('/users/login', require('../backend/routes/users/login'));
 server.use('/users/register', require('../backend/routes/users/register'));
 server.use('/users/listall', require('../backend/routes/users/listall'));
+server.use('/users/searchUser', require('../backend/routes/users/searchUser'));
 
 server.use(cors());
 
 
 /* RUTAS */
-
 
 const PORT = process.env.APP_PORT ? process.env.APP_PORT : 3000;
 
