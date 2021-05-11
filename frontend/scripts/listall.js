@@ -26,7 +26,10 @@ async function listallUsers() {
             }else{
                 profile = "Básico";
             }
-			const usrContainer = document.createElement('tbody');
+            const usrContainer = document.createElement('tbody');
+            const endpointRemoveUser = `http://localhost:3000/users/removeUser/${data.usr[i].usr_login}`
+            const endpointEditUser = `http://localhost:3000/users/endpointEditUser/${data.usr[i].usr_login}`
+
 			usrContainer.innerHTML = `            
             <tr>
                 <td><input type="checkbox"></td>
@@ -34,7 +37,9 @@ async function listallUsers() {
                 <td>${data.usr[i].usr_name}</td>
                 <td>${data.usr[i].usr_surname}</td>
                 <td>${data.usr[i].usr_email}</td>
-                <td>${profile}</td>                
+                <td>${profile}</td>  
+                <td><a onclick="editUser('${data.usr[i].usr_login}')"><i class="fas fa-edit"></i></a> | <a onclick="removeUser('${data.usr[i].usr_login}')"><i class="fas fa-user-times"></i></a></td>
+
             </tr>
 			`;
 			$dataTable.appendChild(usrContainer);

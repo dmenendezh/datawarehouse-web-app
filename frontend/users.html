@@ -92,6 +92,8 @@
                                             <th>Apellido</th>
                                             <th>Email</th>
                                             <th>Perfil</th>
+                                            <th>Editar | Eliminar</th>
+
                                         </tr>
                                     </thead>
 
@@ -121,8 +123,8 @@
                         <div class="form-group">
                             <label class="small mb-1" for="cmbPerfil">¿Es administrador?</label>                                                
                             <select style="height: 68px;" class="form-control py-4" id="cmbPerfil">
-                                <option value="0">No</option>
-                                <option value="1">Si</option>
+                                <option id="optionno" value="0">No</option>
+                                <option id="optionyes" value="1">Si</option>
                               </select>                                           
                         </div>
                         <div class="form-group">
@@ -158,9 +160,9 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="scripts/dom.js"></script>
         <script src="scripts/register.js"></script>
-        <script src="scripts/login.js"></script>
         <script src="scripts/listall.js"></script>
         <script src="scripts/users/searcher.js"></script>
-
+        <script src="scripts/users/edit.js"></script>
+        <script src="scripts/users/remove.js"></script>
     </body>
 </html>

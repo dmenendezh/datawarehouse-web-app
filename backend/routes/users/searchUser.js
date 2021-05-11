@@ -21,11 +21,19 @@ router.get('/:nombre',  /*mdGlobal.validateToken, mdUsers.userRol,*/ async (req,
               }
         }})
         .catch(err => throwException(err, res));
+
+        if(usr == ''){
+            usr = await Users.usersModel.findAll({ where: { 
+                usr_login: {
+                    [Op.like]: '' + nomb + '%'
+                  }
+            }})
+            .catch(err => throwException(err, res));
+        }
     }
 
-
     res.status(200).json({
-        message: 'Returning some users.',
+        message: 'Returning some users',       
         quantity: usr.length,
         usr
     });
