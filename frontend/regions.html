@@ -8,6 +8,9 @@
         <link href="styles/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -37,20 +40,19 @@
                                 </div>
                                 Home
                             </a>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Opciones
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="dashboard.html">Clientes</a>
-                                    <a class="nav-link" href="companys.html">Compañias</a>
-                                    <a class="nav-link" href="users.html">Usuarios</a>
-                                    <a class="nav-link" href="regions.html">Region / Ciudad</a>
-
-                                </nav>
-                            </div>
+                            <a class="nav-link" href="dashboard.html"> <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div> Clientes</a>
+                            <a class="nav-link" href="companys.html"> <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>Compañias</a>
+                            <a class="nav-link" href="users.html"> <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div> Usuarios</a>
+                            <a class="nav-link" href="regions.html"> <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div> Region / Ciudad</a>
+ 
                         </div>
                     </div>
                 </nav>
@@ -60,9 +62,59 @@
                     <div class="container-fluid">
                         <h1 class="mt-4">Company Client Management | Data Warehouse</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Regiones</li>
-                        </ol>                   
-                       
+                            <li class="breadcrumb-item active">Regiones / Paises / Ciudades</li>
+                        </ol> 
+                             
+                        <div id="crud_buttons">
+                            <button id="createRegion" onclick="fncCreateRegion();" class="btn btn-primary btn-sm" type="button"><i class="glyphicon glyphicon-asterisk"></i> Crear region</button>
+                            <button id="createCountry" onclick="fncCreateCountry();" class="btn btn-primary btn-sm" type="button"><i class="glyphicon glyphicon-asterisk"></i> Crear pais</button>
+                            <button id="createCity" onclick="fncCreateCity();" class="btn btn-primary btn-sm" type="button"><i class="glyphicon glyphicon-asterisk"></i> Crear ciudad</button>
+
+                            <button id="btnModify" onclick="fncEdit();" class="btn btn-info btn-sm" type="button"><i class="glyphicon glyphicon-pencil"></i> Editar</button>
+                            <button id="btnDelete" onclick="fncDelete();" class="btn btn-info btn-sm" type="button"><i class="glyphicon glyphicon-remove"></i> Eliminar</button>
+                        </div>
+                        <br>
+                         <!-- 3 setup a container element -->
+                        <div id="jstree"></div>
+                        <input hidden class="form-control py-4" id="flagType" type="text"/>
+
+                        <form hidden id="crud_regionsCity" hidden>
+                            <div hidden class="form-group">
+                                <label class="small mb-1" for="inputType">Tipo</label>
+                                <input readonly class="form-control py-4" id="inputType" type="text"/>
+                            </div>
+                            <div id="regionsCmbContainer" class="form-group">
+                                <label class="small mb-1" for="cmbRegions">Region</label>                                                
+                                <select class="form-control py-4" id="cmbRegions">
+                                    
+                                </select>                                           
+                            </div>
+                            <div id="countrysCmbContainer" class="form-group">
+                                <label class="small mb-1" for="cmbCountrys">Pais</label>                                                
+                                <select class="form-control py-4" id="cmbCountrys">
+                                
+                                </select>                                           
+                            </div>
+                            <div id="cityInputContainer" class="form-group">
+                                <label class="small mb-1" for="inputCity">Ciudad</label>
+                                <input class="form-control py-4" id="inputCity" type="text" placeholder="Ingresar nombre de Ciudad" />
+                            </div>
+                            <div id="regionInputContainer" hidden class="form-group">
+                                <label class="small mb-1" for="inputRegion">Region</label>
+                                <input class="form-control py-4" id="inputRegion" type="text" placeholder="Ingresar nombre de Region" />
+                            </div>
+                            <div id="countryInputContainer" hidden class="form-group">
+                                <label class="small mb-1" for="inputCountry">Pais</label>
+                                <input class="form-control py-4" id="inputCountry" type="text" placeholder="Ingresar nombre de Pais" />
+                            </div>
+
+                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                <a id="btnConfirm" class="btn btn-primary">Confirmar</a>
+                                <a id="btnBack" class="btn btn-info">Volver</a>
+                            </div>
+                           
+
+                        </form>
                     </div> 
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -76,12 +128,17 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
+
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/datatables-demo.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+        <script src="scripts/dom.js"></script>
+        <script src="scripts/regions/treeview.js"></script>
+        
+        
     </body>
 </html>

@@ -20,6 +20,10 @@ server.use('/users/register', require('../backend/routes/users/register'));
 server.use('/users/listall', require('../backend/routes/users/listall'));
 server.use('/users/searchUser', require('../backend/routes/users/searchUser'));
 
+//add
+server.use('/regions/createRegion', require('../backend/routes/regions/addRegion'));
+server.use('/regions/listRegion', require('../backend/routes/regions/listRegion'));
+
 server.use(cors());
 
 

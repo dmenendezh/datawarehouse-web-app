@@ -10,3 +10,23 @@ CREATE TABLE IF NOT EXISTS `dw_webapp`.`users` (
   `usr_admin_flag` INT NOT NULL,
   PRIMARY KEY (`usr_id`))
 ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `dw_webapp`.`regions` (
+  `region_id` INT NOT NULL AUTO_INCREMENT,
+  `region_name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`region_id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `dw_webapp`.`countrys` (
+  `country_id` INT NOT NULL AUTO_INCREMENT,
+  `country_name` VARCHAR(255) NOT NULL,
+  `region_id` INT NOT NULL,
+  PRIMARY KEY (`country_id`),
+  INDEX `fk_regions_idx` (`region_id` ASC),
+  CONSTRAINT `fk_regions`
+    FOREIGN KEY (`region_id`)
+    REFERENCES `dw_webapp`.`regions` (`region_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
