@@ -4,15 +4,20 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Company Client Management 2021 | Data Warehouse</title>
+        <title>Company Client Management | Data Warehousing</title>
         <link href="styles/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-        
+        <link rel="shortcut icon" href="images/data-warehouse.svg">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 
     </head>
     <body class="sb-nav-fixed">
+        <div class="loading show">
+            <div class="spin"></div>
+        </div>
+
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
@@ -40,9 +45,7 @@
                                 </div>
                                 Home
                             </a>
-                            <a class="nav-link" href="dashboard.html"> <div class="sb-nav-link-icon">
-                                <i class="fas fa-tachometer-alt"></i>
-                            </div> Clientes</a>
+
                             <a class="nav-link" href="companys.html"> <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>Compañias</a>
@@ -70,14 +73,17 @@
                             <button id="createCountry" onclick="fncCreateCountry();" class="btn btn-primary btn-sm" type="button"><i class="glyphicon glyphicon-asterisk"></i> Crear pais</button>
                             <button id="createCity" onclick="fncCreateCity();" class="btn btn-primary btn-sm" type="button"><i class="glyphicon glyphicon-asterisk"></i> Crear ciudad</button>
 
-                            <button id="btnModify" onclick="fncEdit();" class="btn btn-info btn-sm" type="button"><i class="glyphicon glyphicon-pencil"></i> Editar</button>
+                            <button id="btnModify" onclick="fncEdit();" class="btn btn-info btn-sm" data-open="modal1" type="button"><i class="glyphicon glyphicon-pencil"></i> Editar</button>
                             <button id="btnDelete" onclick="fncDelete();" class="btn btn-info btn-sm" type="button"><i class="glyphicon glyphicon-remove"></i> Eliminar</button>
                         </div>
                         <br>
                          <!-- 3 setup a container element -->
                         <div id="jstree"></div>
-                        <input hidden class="form-control py-4" id="flagType" type="text"/>
+                        <input hidden readonly class="form-control py-1" id="flagType" type="text"/>
+                        <input hidden readonly class="form-control py-1" id="flagValue" type="text"/>
+                        <input hidden readonly class="form-control py-1" id="flagParentValue" type="text"/>
 
+                        
                         <form hidden id="crud_regionsCity" hidden>
                             <div hidden class="form-group">
                                 <label class="small mb-1" for="inputType">Tipo</label>
@@ -85,13 +91,13 @@
                             </div>
                             <div id="regionsCmbContainer" class="form-group">
                                 <label class="small mb-1" for="cmbRegions">Region</label>                                                
-                                <select class="form-control py-4" id="cmbRegions">
+                                <select class="form-control py-2" id="cmbRegions">
                                     
                                 </select>                                           
                             </div>
                             <div id="countrysCmbContainer" class="form-group">
                                 <label class="small mb-1" for="cmbCountrys">Pais</label>                                                
-                                <select class="form-control py-4" id="cmbCountrys">
+                                <select class="form-control py-2" id="cmbCountrys">
                                 
                                 </select>                                           
                             </div>
@@ -112,9 +118,47 @@
                                 <a id="btnConfirm" class="btn btn-primary">Confirmar</a>
                                 <a id="btnBack" class="btn btn-info">Volver</a>
                             </div>
-                           
+                         </form>
 
-                        </form>
+                         <div class="modal" id="modal1" data-animation="slideInOutLeft">
+                            <div class="modal-dialog">
+  
+                              <section class="modal-content">
+                                <p><strong>Editar</strong></p>
+                                
+
+                                <form id="editRegion">
+                                    <div id="editCmbRegionContainer" class="form-group">
+                                        <label class="small mb-1" for="cmbEditRegion">Region</label>                                                
+                                        <select class="form-control py-1" id="cmbEditRegion">                                            
+                                        </select>                                           
+                                    </div>
+                                    <div id="editCmbCountryContainer" class="form-group">
+                                        <label class="small mb-1" for="cmbEditCountry">Pais</label>                                                
+                                        <select class="form-control py-1" id="cmbEditCountry">                                        
+                                        </select>                                           
+                                    </div>
+                                    <div id="editCityContainer" class="form-group">
+                                        <label class="small mb-1" for="inputEditCity">Ciudad</label>
+                                        <input class="form-control py-1" id="inputEditCity" type="text" placeholder="Ingresar nombre de Ciudad" />
+                                    </div>
+                                    <div id="editInputCountryContainer" class="form-group">
+                                        <label class="small mb-1" for="inputEditCountry">Pais</label>
+                                        <input class="form-control py-1" id="inputEditCountry" type="text" placeholder="Ingresar nombre de Pais" />
+                                    </div>
+                                    <div id="editInputRegionContainer" class="form-group">
+                                        <label class="small mb-1" for="inputEditRegion">Region</label>
+                                        <input class="form-control py-1" id="inputEditRegion" type="text" placeholder="Ingresar nombre de Region" />
+                                    </div>
+                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <a id="btnConfirmModal" class="btn btn-primary">Confirmar</a>
+                                        <a id="backModal" class="btn btn-info">Volver</a>
+                                    </div>
+                                </form>
+                              </section>
+                            </div>
+                        </div>
+                          
                     </div> 
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -126,6 +170,14 @@
                 </footer>
             </div>
         </div>
+
+        <script>
+            var Loading=(loadingDelayHidden=0)=>{let loading=null;const myLoadingDelayHidden=loadingDelayHidden;let imgs=[];let lenImgs=0;let counterImgsLoading=0;function incrementCounterImgs(){counterImgsLoading+=1;if(counterImgsLoading===lenImgs){hideLoading()}}function hideLoading(){if(loading!==null){loading.classList.remove('show');setTimeout(function(){loading.remove()},myLoadingDelayHidden)}}function init(){document.addEventListener('DOMContentLoaded',function(){loading=document.querySelector('.loading');imgs=Array.from(document.images);lenImgs=imgs.length;if(imgs.length===0){hideLoading()}else{imgs.forEach(function(img){img.addEventListener('load',incrementCounterImgs,false)})}})}return{'init':init}}
+            Loading(2000).init();
+
+            
+        </script>
+        
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 

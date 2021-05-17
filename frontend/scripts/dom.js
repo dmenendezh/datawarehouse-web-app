@@ -31,6 +31,10 @@ const $btnDelete = document.querySelector('#btnDelete');
 const $crud_regionsCity = document.querySelector('#crud_regionsCity');
 const $jstree = document.querySelector('#jstree');
 const $flagType = document.querySelector('#flagType');
+const $flagValue = document.querySelector('#flagValue');
+const $flagParentValue = document.querySelector('#flagParentValue');
+
+
 const $crud_buttons = document.querySelector('#crud_buttons');7
 const $btnBack = document.querySelector('#btnBack');
 
@@ -47,9 +51,25 @@ const $cityInputContainer = document.querySelector('#cityInputContainer');
 const $regionInputContainer = document.querySelector('#regionInputContainer');
 const $countryInputContainer = document.querySelector('#countryInputContainer');
 const $btnConfirm = document.querySelector('#btnConfirm');
+const $backModal = document.querySelector('#backModal');
 
 
+const $editCmbRegionContainer = document.querySelector('#editCmbRegionContainer');
+const $editCmbCountryContainer = document.querySelector('#editCmbCountryContainer');
+const $editInputCountryContainer = document.querySelector('#editInputCountryContainer');
+const $editInputRegionContainer = document.querySelector('#editInputRegionContainer');
+const $editCityContainer = document.querySelector('#editCityContainer');
 
+const $cmbEditRegion = document.querySelector('#cmbEditRegion');
+const $cmbEditCountry = document.querySelector('#cmbEditCountry');
+const $inputEditCity = document.querySelector('#inputEditCity');
+const $inputEditCountry = document.querySelector('#inputEditCountry');
+const $inputEditRegion = document.querySelector('#inputEditRegion');
+
+
+const $layoutAddNewContact = document.querySelector('#layoutAddNewContact');
+const $btnGoBack = document.querySelector('#btnGoBack');
+const $btnAddContact = document.querySelector('#btnAddContact');
 
 
 

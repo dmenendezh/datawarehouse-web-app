@@ -23,6 +23,13 @@ server.use('/users/searchUser', require('../backend/routes/users/searchUser'));
 //add
 server.use('/regions/createRegion', require('../backend/routes/regions/addRegion'));
 server.use('/regions/listRegion', require('../backend/routes/regions/listRegion'));
+server.use('/regions/listRegionId', require('../backend/routes/regions/listRegionId'));
+
+server.use('/regions/createCountry', require('../backend/routes/regions/addCountry'));
+server.use('/regions/listCountries', require('../backend/routes/regions/listCountries'));
+server.use('/regions/createCity', require('../backend/routes/regions/addCity'));
+
+server.use('/regions/treeView', require('../backend/routes/regions/treeView'));
 
 server.use(cors());
 
