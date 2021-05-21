@@ -1,20 +1,4 @@
-var treeDataSource = [    
-    { id: 'America', parent: '#', text: 'America', type: 'region',tipo: 'region' }, 
-        { id: 'Argentina', parent: 'America', text: 'Argentina', type: 'country',tipo: 'country'}, 
-            { id: 'Buenos Aires', parent: 'Argentina', text: 'Buenos Aires', type: 'city',tipo: 'city' },    
-            { id: 'Cordoba', parent: 'Argentina', text: 'Cordoba', type: 'city', tipo: 'city'},       
-        { id: 'Colombia', parent: 'America', text: 'Colombia', type: 'country',tipo: 'country'}, 
-            { id: 'Bogota', parent: 'Colombia', text: 'Bogota', type: 'city', tipo: 'city' },    
-        { id: 'Uruguay', parent: 'America', text: 'Uruguay', type: 'country',tipo: 'country' },
-            { id: 'Montevideo', parent: 'Uruguay', text: 'Montevideo', type: 'city',tipo: 'city' },    
-            { id: 'Paysandu', parent: 'Uruguay', text: 'Paysandu', type: 'city',tipo: 'city' },    
-
-    { id: 'Europa', parent: '#', text: 'Europa', type: 'region',tipo: 'region' },    
-    { id: 'Francia', parent: 'Europa', text: 'Francia', type: 'country',tipo: 'country'},
-    { id: 'Paris', parent: 'Francia', text: 'Paris', type: 'city',tipo: 'city' }];
-
-
-    async function invoqueTreeView (){
+async function invoqueTreeView (){
         const options = {
             method: 'GET',
             headers: {    

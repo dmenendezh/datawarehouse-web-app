@@ -20,7 +20,3 @@ btnCreateContact.addEventListener("click", e => {
 $btnGoBack.addEventListener("click", e => {   
     window.location.href = 'dashboard.html';
 });
-
-$btnAddContact.addEventListener("click", e => {
-    window.location.href = 'dashboard.html';
-});

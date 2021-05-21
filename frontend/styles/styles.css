@@ -67,14 +67,24 @@
 
 .containerform{
   display: flex;
-  border: 3px solid rgb(62, 62, 199);
+  border: 3px solid rgb(115, 115, 247);
   border-radius: 10px;
   margin-top: 5px;
   height: 90px;
   margin-bottom: 30px;
+  background-color:white;
+}
+
+.containercolor{
+  border: 3px solid rgb(62, 62, 199);
+  border-radius: 10px;
+  height: 330px;
+  padding:10px;
+  background-color:rgb(62, 62, 199);
 }
 .ubication-container{
   display: flex;
+  margin-top: 40px;
 }
 .prueva{
   width: 215px;

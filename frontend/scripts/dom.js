@@ -72,8 +72,25 @@ const $btnGoBack = document.querySelector('#btnGoBack');
 const $btnAddContact = document.querySelector('#btnAddContact');
 
 
+/*COMIENZO DOM - Company */
+const $btnConfirmModalCompany = document.querySelector('#btnConfirmModalCompany');
+const $backModalCompany = document.querySelector('#backModalCompany');
+
+const $cmbcompanyCity = document.querySelector('#cmbcompanyCity');
+const $inputcompanyEmail = document.querySelector('#inputcompanyEmail');
+const $inputcompanyAddress = document.querySelector('#inputcompanyAddress');
+const $inputCompanyName = document.querySelector('#inputCompanyName');
+
+const $companyCity_container = document.querySelector('#companyCity_container');
+const $companyEmail_container = document.querySelector('#companyEmail_container');
+const $companyAddress_container = document.querySelector('#companyAddress_container');
+const $companyName_container = document.querySelector('#companyName_container');
+
+const $btnCreateCompany = document.querySelector('#btnCreateCompany');
 
 
+
+/* FIN | DOM - Company */
 
 
 

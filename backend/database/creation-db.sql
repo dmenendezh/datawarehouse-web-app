@@ -31,8 +31,6 @@ CREATE TABLE IF NOT EXISTS `dw_webapp`.`countries` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
-
 CREATE TABLE IF NOT EXISTS `dw_webapp`.`cities` (
   `city_id` INT NOT NULL AUTO_INCREMENT,
   `city_name` VARCHAR(255) NOT NULL,
@@ -42,6 +40,57 @@ CREATE TABLE IF NOT EXISTS `dw_webapp`.`cities` (
   CONSTRAINT `fk_country`
     FOREIGN KEY (`country_id`)
     REFERENCES `dw_webapp`.`countries` (`country_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `dw_webapp`.`companies` (
+  `company_id` INT NOT NULL AUTO_INCREMENT,
+  `company_name` VARCHAR(255) NOT NULL,
+  `company_address` VARCHAR(255) NOT NULL,
+  `company_email` VARCHAR(255) NOT NULL,
+  `city_id` INT NOT NULL,
+  PRIMARY KEY (`company_id`),
+  INDEX `fk_company_idx` (`company_id` ASC),
+  CONSTRAINT `fk_city`
+    FOREIGN KEY (`city_id`)
+    REFERENCES `dw_webapp`.`cities` (`city_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `dw_webapp`.`contacts` (
+  `contact_id` INT NOT NULL AUTO_INCREMENT,
+  `contact_name` VARCHAR(255) NOT NULL,
+  `contact_surname` VARCHAR(255) NOT NULL,
+  `contact_charge` VARCHAR(255) NOT NULL,
+  `contact_email` VARCHAR(255) NOT NULL,
+  `company_id` INT NOT NULL,
+  `region_id` INT NOT NULL,
+  `country_id` INT NOT NULL,
+  `city_id` INT NOT NULL,
+  `contact_address` VARCHAR(255) NOT NULL,
+  `contact_interest` INT NOT NULL,
+  PRIMARY KEY (`contact_id`),
+  INDEX `fk_contact_idx` (`contact_id` ASC),
+  CONSTRAINT `fk_company`
+    FOREIGN KEY (`company_id`)
+    REFERENCES `dw_webapp`.`companies` (`company_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_contact_region`
+    FOREIGN KEY (`region_id`)
+    REFERENCES `dw_webapp`.`regions` (`region_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_contact_country`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `dw_webapp`.`countries` (`country_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION, 
+    CONSTRAINT `fk_contact_city`
+    FOREIGN KEY (`city_id`)
+    REFERENCES `dw_webapp`.`cities` (`city_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

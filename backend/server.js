@@ -7,29 +7,37 @@ const compression = require('compression');
 
 //3. agregar middlewares globales
 server.use(express.json()); // parsear el body a un objeto
-server.use(bodyParser.json());
 const cors = require('cors')
 server.use(compression());
-
+server.use(bodyParser.json({limit: '50mb'}));
+server.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+server.use(express.json());
+server.use(bodyParser.json());
 
 /* RUTAS */
-
-//login
+//login and register
 server.use('/users/login', require('../backend/routes/users/login'));
 server.use('/users/register', require('../backend/routes/users/register'));
 server.use('/users/listall', require('../backend/routes/users/listall'));
 server.use('/users/searchUser', require('../backend/routes/users/searchUser'));
 
-//add
+//regions - country and cities
 server.use('/regions/createRegion', require('../backend/routes/regions/addRegion'));
 server.use('/regions/listRegion', require('../backend/routes/regions/listRegion'));
 server.use('/regions/listRegionId', require('../backend/routes/regions/listRegionId'));
-
 server.use('/regions/createCountry', require('../backend/routes/regions/addCountry'));
 server.use('/regions/listCountries', require('../backend/routes/regions/listCountries'));
 server.use('/regions/createCity', require('../backend/routes/regions/addCity'));
-
 server.use('/regions/treeView', require('../backend/routes/regions/treeView'));
+server.use('/regions/listCities', require('../backend/routes/regions/listCities'));
+server.use('/regions/listCitiesCountryId', require('../backend/routes/regions/listCityId'));
+
+//company
+server.use('/companies/createCompany', require('../backend/routes/companys/addCompany'));
+server.use('/companies/listCompanies', require('../backend/routes/companys/listCompanies'));
+
+//contacts
+server.use('/contacts/createContact', require('../backend/routes/contacts/addContact'));
 
 server.use(cors());
 
