@@ -38,12 +38,14 @@ server.use('/companies/listCompanies', require('../backend/routes/companys/listC
 
 //contacts
 server.use('/contacts/createContact', require('../backend/routes/contacts/addContact'));
+server.use('/contacts/listContacts', require('../backend/routes/contacts/listContacts'));
+server.use('/contacts/deleteContact', require('../backend/routes/contacts/deleteContact'));
+server.use('/contacts/editContact', require('../backend/routes/contacts/editContact'));
 
 server.use(cors());
 
 
 /* RUTAS */
-
 const PORT = process.env.APP_PORT ? process.env.APP_PORT : 3000;
 
 //5. levantar el servidor
