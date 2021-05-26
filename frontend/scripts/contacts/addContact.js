@@ -21,7 +21,7 @@ btnSaveContact.addEventListener("click",  async (e) => {
         country_id: country_id.value,
         city_id: city_id.value,
         contact_address: address.value,
-        contact_interest:  interest.value,
+        contact_interest:  interest.value
         
     }  
     

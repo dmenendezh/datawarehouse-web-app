@@ -88,6 +88,9 @@ const $companyName_container = document.querySelector('#companyName_container');
 
 const $btnCreateCompany = document.querySelector('#btnCreateCompany');
 
+const $tbody_contacts = document.querySelector('#tbody_contacts');
+
+
 
 
 /* FIN | DOM - Company */

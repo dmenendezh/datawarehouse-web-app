@@ -12,7 +12,6 @@
    </head>
    <body class="sb-nav-fixed">
       <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
          <a class="navbar-brand" href="index.html">Menu</a>
          <!-- Navbar-->
          <ul class="navbar-nav ml-auto ml-md-0">
@@ -33,25 +32,25 @@
                   <div class="nav">
                      <a class="nav-link" href="dashboard.html">
                         <div class="sb-nav-link-icon">
-                           <i class="fas fa-tachometer-alt"></i>
+                           <i class="fas fa-id-card"></i>
                         </div>
-                        Home
+                        Contactos
                      </a>
                      <a class="nav-link" href="companys.html">
                         <div class="sb-nav-link-icon">
-                           <i class="fas fa-tachometer-alt"></i>
+                           <i class="fas fa-building"></i>
                         </div>
                         Compañias
                      </a>
                      <a class="nav-link" href="users.html">
                         <div class="sb-nav-link-icon">
-                           <i class="fas fa-tachometer-alt"></i>
+                           <i class="fas fa-users"></i>
                         </div>
                         Usuarios
                      </a>
                      <a class="nav-link" href="regions.html">
                         <div class="sb-nav-link-icon">
-                           <i class="fas fa-tachometer-alt"></i>
+                           <i class="fas fa-globe-americas"></i>
                         </div>
                         Region / Ciudad
                      </a>
@@ -79,22 +78,29 @@
                                  <button id="btnCreateContact" class="btn btn-primary btn-register" type="button">Nuevo contacto</button>
                               </div>
                            </form>
+                           
                         </div>
+                        
                      </div>
+                     <a class="remove-selected-users hidden" onclick="removeUsersSelected('${data.contacts[i].company_id}')"><i class="fas fa-trash"></i> Eliminar contactos</a>
                      <div id="cardBody" class="card-body">
                         <div class="table-responsive">
                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                               <thead>
                                  <tr>
-                                    <th>Sel.</th>
+                                    <th id="btnselects">Sel.</th>
                                     <th>Contacto</th>
                                     <th>Pais/Region</th>
                                     <th>Compañia</th>
                                     <th>Cargo</th>
                                     <th>Interés</th>
-                                    <th>Editar | Eliminar</th>
+                                    <th id="btns_actions">Editar | Eliminar</th>
+                                    
                                  </tr>
                               </thead>
+                              <tbody id="tbody_contacts">
+
+                              </tbody>
                            </table>
                         </div>
                      </div>
@@ -235,5 +241,7 @@
       <script src="scripts/spinner.js"></script>
       <script src="scripts/contacts/addContact.js"></script>
       <script src="scripts/contacts/loadCombos.js"></script>
+      <script src="scripts/contacts/listContacts.js"></script>
+
    </body>
 </html>
