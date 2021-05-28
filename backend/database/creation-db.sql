@@ -94,3 +94,19 @@ CREATE TABLE IF NOT EXISTS `dw_webapp`.`contacts` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `dw_webapp`.`channels` (
+  `channel_id` INT NOT NULL AUTO_INCREMENT,
+  `channel_name` VARCHAR(255) NOT NULL,
+  `channel_account` VARCHAR(255) NOT NULL,
+  `channel_preferences` VARCHAR(255) NOT NULL,
+  `contact_id` INT NOT NULL,
+  PRIMARY KEY (`channel_id`),
+  INDEX `fk_channel_idx` (`channel_id` ASC),
+  CONSTRAINT `fk_contacts`
+    FOREIGN KEY (`contact_id`)
+    REFERENCES `dw_webapp`.`contacts` (`contact_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
