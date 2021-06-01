@@ -1,25 +1,27 @@
 const { Router } = require('express');
 const router = Router();
-const Channel = require('../../models/Channel');
 /*const mdGlobal = require('../../middlewares/mdGlobal');
 const mdUsers = require('../../middlewares/mdUsers');
 const mdProducts = require('../../middlewares/mdProducts');*/
 const cors = require('cors')
+const db = require("../../../database/dbConnector");
 
 router.post('/', /*mdGlobal.validateToken, mdGlobal.checkEmptyBody, mdUsers.userRol, mdProducts.checkDataSended,*/ async (req, res) => {
     const contactChannelData = req.body;
     console.log(contactChannelData)
     
-    const newContactChannel = await Channel.channelModel.create(contactChannelData)
-    .catch(err => {
-        console.log('Unable to create channel contact.' + err.message);
-        throwException(err, res);
-    });
+    try{
+        const newContactChannel = await db.query("insert into channels (channel_name,channel_account,channel_preferences,contact_id) values ('"+contactChannelData.channel_name+"','"+contactChannelData.channel_account+"','"+contactChannelData.channel_preferences+"', (select contact_id from contacts where contact_email = '"+ contactChannelData.contact_email + "'))", { type: db.QueryTypes.INSERT });
+       
+        res.status(201).json({
+            message: 'Channel contact created.',
+            newContactChannel
+        });
 
-    res.status(201).json({
-        message: 'Channel contact created.',
-        newContactChannel
-    });
+    }catch(err){
+       console.log(err.message);
+       throwException(err, res);
+    }     
 });
 
 const throwException = (err, res) => {

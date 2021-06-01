@@ -175,6 +175,9 @@
                                        <th>Editar | Eliminar</th>
                                     </tr>
                                  </thead>
+                                 <tbody id="tbody_channels">
+
+                                 </tbody>
                               </table>
                            </div>
                         </div>
@@ -190,13 +193,13 @@
                            <p><strong>Agregar canal de contacto</strong></p>
                            <form id="addContact">
                               <div id="addChannel" class="form-group">
-                                 <label class="small mb-1" for="cmbEditRegion">Canal de contacto</label>                                                
-                                 <select required class="form-control py-1" id="cmbEditRegion">
-                                    <option id="" value="0">Telefono</option>
-                                    <option id="" value="1">Whatsapp</option>
-                                    <option id="" value="2">Instagram</option>
-                                    <option id="" value="3">Facebook</option>
-                                    <option id="" value="4">LinkedIn</option>
+                                 <label class="small mb-1" for="cmbChannel">Canal de contacto</label>                                                
+                                 <select required class="form-control py-1" id="cmbChannel">
+                                    <option id="" value="Telefono">Telefono</option>
+                                    <option id="" value="Whatsapp">Whatsapp</option>
+                                    <option id="" value="Instagram">Instagram</option>
+                                    <option id="" value="Facebook">Facebook</option>
+                                    <option id="" value="LinkedIn">LinkedIn</option>
                                  </select>
                               </div>
                               <div id="addAccount" class="form-group">
@@ -206,9 +209,9 @@
                               <div id="addPreferences" class="form-group">
                                  <label class="small mb-1" for="cmbPreferences">Preferencias</label>                                                
                                  <select required class="form-control py-1" id="cmbPreferences">
-                                    <option id="" value="0">Sin preferencia</option>
-                                    <option id="" value="1">Canal favorito</option>
-                                    <option id="" value="2">No molestar</option>
+                                    <option id="" value="Sin preferencia">Sin preferencia</option>
+                                    <option id="" value="Canal favorito">Canal favorito</option>
+                                    <option id="" value="No molestar">No molestar</option>
                                  </select>
                               </div>
                               <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
@@ -239,9 +242,11 @@
       <script src="scripts/contacts/uploadavatar.js"></script>
       <script src="scripts/contacts/grid.js"></script>
       <script src="scripts/spinner.js"></script>
-      <script src="scripts/contacts/addContact.js"></script>
+     <script src="scripts/contacts/addContact.js"></script>
       <script src="scripts/contacts/loadCombos.js"></script>
       <script src="scripts/contacts/listContacts.js"></script>
       <script src="scripts/contacts/searcher.js"></script>
+      <script src="scripts/contacts/addChannelContact.js"></script>
+
    </body>
 </html>
