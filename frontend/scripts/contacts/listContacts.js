@@ -1,4 +1,3 @@
-let SELECTED_CONTACTS = [];
 listAllContacts();
 
 async function listAllContacts() {   
@@ -30,7 +29,7 @@ async function listAllContacts() {
 			$tbody_contacts.appendChild(contactContainer);
 		}
         $('#dataTable').dataTable( {
-            pageLength : 5} );
+            pageLength : 50 } );
 
         document.querySelectorAll("#dataTable_length")[0].classList.add("hidden");
         document.querySelectorAll("#dataTable_filter")[0].classList.add("hidden");
@@ -44,31 +43,5 @@ async function listAllContacts() {
 
 function checkContact(index){}
 
-function removeUsersSelected(){
-    for(let i = 0; i < SELECTED_CONTACTS.length; i++){
-        let index = SELECTED_CONTACTS[i];
-        const EMAIL_USER = document.querySelectorAll(".tr_"+index)[0].childNodes[3].children[1].outerText;
-        alert(EMAIL_USER);
-    }    
-}
-
-$(document).on('change','input[type="checkbox"]' ,function(e) {
-    const index = this.attributes[1].value;
-    const checked = this.checked;
-
-    if (checked) {
-        document.querySelectorAll(".tr_"+index)[0].classList.add("selectRowTable");
-        SELECTED_CONTACTS.push(index);
-    }else{
-        document.querySelectorAll(".tr_"+index)[0].classList.remove("selectRowTable");
-        SELECTED_CONTACTS.splice(index);
-    }
-    console.log(SELECTED_CONTACTS.length);
-    if(SELECTED_CONTACTS.length >= 2){
-        document.querySelectorAll(".remove-selected-users")[0].classList.remove("hidden");
-    }else{
-        document.querySelectorAll(".remove-selected-users")[0].classList.add("hidden");
-    }
 
 
-});

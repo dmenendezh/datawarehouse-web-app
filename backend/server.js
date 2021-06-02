@@ -43,6 +43,7 @@ server.use('/contacts/deleteContact', require('../backend/routes/contacts/delete
 server.use('/contacts/editContact', require('../backend/routes/contacts/editContact'));
 server.use('/contacts/searchContact', require('../backend/routes/contacts/searchContact'));
 server.use('/contacts/addContactChannel', require('../backend/routes/contacts/channels/addContactChannel'));
+server.use('/contacts/deleteSelectedContacts', require('../backend/routes/contacts/deleteSelectedContacts'));
 
 server.use(cors());
 
