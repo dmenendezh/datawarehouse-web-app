@@ -105,14 +105,14 @@
                         </div>
                      </div>
                   </div>
-                  <form hidden id="layoutAddNewContact" enctype="multipart/form-data" action="/addPhoto" method="post">
+                  <form hidden id="layoutAddNewContact" enctype="multipart/form-data" action="uploadPhoto" method="post">
                      <div class="containercolor">
                         <div class="avatar-wrapper">
                            <img id="photo" class="profile-pic" src="" />
                            <div class="upload-button">
                               <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                            </div>
-                           <input class="file-upload" type="file" accept="image/*"/>
+                           <input id="photoUpload" onchange="createImage(event)" class="file-upload" type="file" accept="image/*"/>
                         </div>
                         <div class="containerform">
                            <div class="group-account div-name">
@@ -183,7 +183,7 @@
                         </div>
                      </div>
                      <div class="btns-account form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <a id="btnSaveContact" class="btn btn-primary">Guardar</a>
+                        <a id="btnSaveContact" type="submit" class="btn btn-primary">Guardar</a>
                         <a id="btnGoBack" class="btn btn-primary">Volver</a>
                      </div>
                   </form>

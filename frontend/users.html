@@ -93,7 +93,6 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Sel.</th>
                                             <th>Usuario</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
@@ -142,13 +141,47 @@
                             <label class="small mb-1" for="inputRepeatPwd">Repetir contraseña</label>
                             <input class="form-control py-4" id="inputRepeatPwd" type="password" placeholder="Repetir contraseña" />
                         </div>
-
                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                             <a id="btnRegister" class="btn btn-primary">Registrar</a>
                         </div>
-
-                    </form>                       
+                    </form>                 
                         
+                    <form class="hidden" id="layoutEdit_Users">
+                        <input hidden id="inputUsuLoginHidden" type="text"/>
+
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEditUser">Usuario</label>
+                            <input class="form-control py-4" id="inputEditUser" type="text" placeholder="Ingresar usuario login" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEditUserName">Nombre</label>
+                            <input class="form-control py-4" id="inputEditUserName" type="text" placeholder="Ingresar nombre" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEditUsrSurname">Apellido</label>
+                            <input class="form-control py-4" id="inputEditUsrSurname" type="text" placeholder="Ingresar apellido" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEditUsrEAddress">Email</label>
+                            <input class="form-control py-4" id="inputEditUsrEAddress" type="email" placeholder="Ingresar email" />
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="cmbEditPerfil">¿Es administrador?</label>                                                
+                            <select style="height: 68px;" class="form-control py-4" id="cmbEditPerfil">
+                                <option id="optioneditno" value="0">No</option>
+                                <option id="optionedityes" value="1">Si</option>
+                              </select>                                           
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEditPassword">Contraseña</label>
+                            <input class="form-control py-4" id="inputEditPassword" type="password" placeholder="Ingresar contraseña" />
+                        </div>
+        
+                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <a id="btnEditUser" class="btn btn-primary">Guardar</a>
+                        </div>
+                    </form>  
+
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -167,7 +200,7 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="scripts/dom.js"></script>
         <script src="scripts/register.js"></script>
-        <script src="scripts/listall.js"></script>
+        <script src="scripts/users/listall.js"></script>
         <script src="scripts/users/searcher.js"></script>
         <script src="scripts/users/edit.js"></script>
         <script src="scripts/users/remove.js"></script>

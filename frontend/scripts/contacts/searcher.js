@@ -37,7 +37,7 @@ const getSearch = async () => {
             contactContainer.innerHTML = `            
             <tr>
                 <td><input onclick="checkContact(${i})" index=${i} type="checkbox"></td>
-                <td><img src="http://localhost:5500/frontend/images/user.png" class="avatarImage"> ${data.contacts[i].contact_name}  ${data.contacts[i].contact_surname}<span class="grid-contact">${data.contacts[i].contact_email}</span></td>
+                <td><img id="avatar" src="${generateAvatar(data.contacts[i].contact_name + ";" + data.contacts[i].contact_surname, "white", "#009578")}" class="Avatar"> ${data.contacts[i].contact_name}  ${data.contacts[i].contact_surname}<span class="grid-contact">${data.contacts[i].contact_email}</span></td>
                 <td>${data.contacts[i].country_name} <span class="grid-contact">${data.contacts[i].city_name}</span></td>
                 <td>${data.contacts[i].company_name}</td>
                 <td>${data.contacts[i].contact_charge}</td>
@@ -58,3 +58,32 @@ const getSearch = async () => {
         }
     }
 };
+
+function devuelveIniciales(text){ 
+    const separa=text.split(";"); 
+    const iniciales = separa[0].charAt(0) + "" +separa[1].charAt(0) 
+    return iniciales;
+} 
+
+function generateAvatar(text, foregroundColor, backgroundColor) {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    const iniciales = devuelveIniciales(text);
+
+    canvas.width = 30;
+    canvas.height = 30;
+
+    // Draw background
+    context.fillStyle = backgroundColor;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw text
+    context.font = "bold 15px Assistant";
+    context.fillStyle = foregroundColor;
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillText(iniciales, canvas.width / 2, canvas.height / 2);
+
+    return canvas.toDataURL("image/png");
+}

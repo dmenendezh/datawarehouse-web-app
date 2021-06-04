@@ -10590,6 +10590,12 @@ progress[value]  {
   margin: 0px;
 }
 
+.Avatar{
+  vertical-align: middle;
+  border-radius: 50%;
+  margin: 0px;
+}
+
 .selectRowTable{
   background-color: rgb(133 181 232 / 27%);
 }
@@ -10599,3 +10605,4 @@ progress[value]  {
   margin-right: 20px;
   margin-top: 8px;
 }
+

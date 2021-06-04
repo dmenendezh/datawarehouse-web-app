@@ -21,6 +21,10 @@ const $inputPassword = document.querySelector('#inputPassword');
 const $comboNo = document.querySelector('#optionno');
 const $comboSi = document.querySelector('#optionyes');
 
+const $btnEditUser = document.querySelector('#btnEditUser');
+
+
+
 
 const $createRegion = document.querySelector('#createRegion');
 const $createCountry = document.querySelector('#createCountry');

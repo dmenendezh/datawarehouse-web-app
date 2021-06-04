@@ -50,7 +50,6 @@ const getSearch = async () => {
             const endpointRemoveUser = `http://localhost:3000/users/removeUser/${data.usr[i].usr_login}`
 			usrContainer.innerHTML = `            
             <tr>
-                <td><input type="checkbox"></td>
                 <td>${data.usr[i].usr_login}</td>
                 <td>${data.usr[i].usr_name}</td>
                 <td>${data.usr[i].usr_surname}</td>

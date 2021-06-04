@@ -32,7 +32,6 @@ async function listallUsers() {
 
 			usrContainer.innerHTML = `            
             <tr>
-                <td><input type="checkbox"></td>
                 <td>${data.usr[i].usr_login}</td>
                 <td>${data.usr[i].usr_name}</td>
                 <td>${data.usr[i].usr_surname}</td>

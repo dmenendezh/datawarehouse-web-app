@@ -20,6 +20,9 @@ server.use('/users/login', require('../backend/routes/users/login'));
 server.use('/users/register', require('../backend/routes/users/register'));
 server.use('/users/listall', require('../backend/routes/users/listall'));
 server.use('/users/searchUser', require('../backend/routes/users/searchUser'));
+server.use('/users/editUser', require('../backend/routes/users/edit'));
+server.use('/users/deleteUser', require('../backend/routes/users/remove'));
+
 
 //regions - country and cities
 server.use('/regions/createRegion', require('../backend/routes/regions/addRegion'));
@@ -44,6 +47,16 @@ server.use('/contacts/editContact', require('../backend/routes/contacts/editCont
 server.use('/contacts/searchContact', require('../backend/routes/contacts/searchContact'));
 server.use('/contacts/addContactChannel', require('../backend/routes/contacts/channels/addContactChannel'));
 server.use('/contacts/deleteSelectedContacts', require('../backend/routes/contacts/deleteSelectedContacts'));
+
+server.post("/uploadPhoto", function(req, res) {
+    console.log("Llego uploadPhoto!");
+    const uploadPhoto = req.body;
+    console.log(req.body)
+
+    res.status(201).json({
+        message: 'uploadPhoto sacessfull!'
+    });
+});
 
 server.use(cors());
 
