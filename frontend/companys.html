@@ -20,6 +20,8 @@
             <a class="navbar-brand" href="dashboard.html">Menu</a>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
+                <span id="usrName" class="usrname_identifier"></span>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -48,7 +50,7 @@
                                </div>
                                Compañias
                             </a>
-                            <a class="nav-link" href="users.html">
+                            <a id="usr_link" class="nav-link" href="users.html">
                                <div class="sb-nav-link-icon">
                                   <i class="fas fa-users"></i>
                                </div>
@@ -164,6 +166,6 @@
         <script src="scripts/company/addCompany.js"></script>
         <script src="scripts/company/listAllCompanies.js"></script>
         <script src="scripts/spinner.js"></script>
-
+        <script src="scripts/users/permissions.js"></script>
     </body>
 </html>

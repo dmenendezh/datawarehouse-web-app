@@ -1,4 +1,3 @@
-sessionStorage.clear();
 const usrlogin = document.getElementById('inputUsrLogin');
 const usrname = document.getElementById('inputUsrName');
 const usr_surname = document.getElementById('inputUsrSurname');

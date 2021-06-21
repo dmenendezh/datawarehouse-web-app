@@ -113,6 +113,101 @@ $('#jstree').bind("select_node.jstree", function (event,data) {
  });
 
 
+ btnEditConfirmModal.addEventListener('click', async (event) => {
+        
+    const TYPE = document.getElementById('flagType').value;
+
+    console.log(TYPE);
+    if(TYPE == 'country'){
+
+        const country_id = "DE DONDE LO SACAMOS !!!!!!!!!!!!!";
+        const region = cmbEditRegion.value;
+        const country_name = inputEditCountry.value;
+
+        const data_region = {
+            region_id: region,
+            contry_name: country_name
+        }
+
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(data_region),
+            headers: {    
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*'
+            }
+        }
+
+        const endpoint = `http://localhost:3000/regions/editCountry/${country_id}`;
+        const response = await fetch(endpoint, options)
+        const dataresponse = await response.json();    
+        if (response.status === 201) {
+            window.location.href = 'regions.html';
+        }
+
+    }else if(TYPE == 'city'){
+
+        const region_id = cmbEditRegion.value;
+        const country_id = cmbEditCountry.value;
+        const city_name = inputEditCity.value;
+        const city_id = "DE DONDE LO SACAMOS !!!!!!!!";
+
+        const datacity = {
+            region_id: region_id,
+            country_id: country_id,
+            city_name: city_name
+        }
+
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(datacity),
+            headers: {    
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*'
+            }
+        }
+
+        const endpoint = `http://localhost:3000/regions/editCity/${city_id}`;
+        const response = await fetch(endpoint, options)
+        const data_r = await response.json();    
+        if (response.status === 201) {
+            window.location.href = 'regions.html';
+        }
+
+    }else if(TYPE == 'region'){
+
+        const region_id = "DE DONDE LO SACO!!!!!!";
+        const region_name = inputEditRegion.value;
+
+        const data = {
+            region_name: region_name            
+        }
+
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {    
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*'
+            }
+        }
+
+        const endpoint = `http://localhost:3000/regions/editRegion/${region_id}`;
+        const response = await fetch(endpoint, options)
+        const data_region = await response.json();    
+        if (response.status === 201) {
+            window.location.href = 'regions.html';
+        }
+    }
+});
+
+
 $btnBack.addEventListener('click', (event) => {
     window.location.href = 'regions.html';
 });

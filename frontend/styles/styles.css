@@ -10606,3 +10606,12 @@ progress[value]  {
   margin-top: 8px;
 }
 
+.usrname_identifier {
+  color:white;
+  margin-right: 50px;
+  margin-top: 8px;
+}
+
+#btnCreateCompany{
+  margin-left: 0px;
+}
