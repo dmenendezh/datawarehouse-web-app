@@ -89,6 +89,7 @@
                         <input hidden readonly class="form-control py-1" id="flagType" type="text"/>
                         <input hidden readonly class="form-control py-1" id="flagValue" type="text"/>
                         <input hidden readonly class="form-control py-1" id="flagParentValue" type="text"/>
+                        <input hidden readonly class="form-control py-1" id="flagchildrens" type="text"/>
 
                         
                         <form hidden id="crud_regionsCity" hidden>
@@ -133,8 +134,9 @@
                               <section class="modal-content">
                                 <p><strong>Editar</strong></p>
                                 
-
                                 <form id="editRegion">
+                                    <input class="form-control py-1" id="inputEditHiddenValue" type="text" hidden/>
+
                                     <div id="editCmbRegionContainer" class="form-group">
                                         <label class="small mb-1" for="cmbEditRegion">Region</label>                                                
                                         <select class="form-control py-1" id="cmbEditRegion">                                            

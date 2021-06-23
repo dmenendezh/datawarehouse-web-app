@@ -15,6 +15,10 @@ router.get('/:value', async (req, res) => {
         " or c2.country_name like '%"+value+"%' or c3.city_name like '%"+value+"%' or c4.company_name like '%"+value+"%' or c1.contact_interest like '%"+value+"%') "+
 
         "order by c1.contact_id asc", { type: db.QueryTypes.SELECT });
+
+
+        
+
         res.status(200).json({
             message: 'Returning matching contacts.',
             quantity: contacts.length,

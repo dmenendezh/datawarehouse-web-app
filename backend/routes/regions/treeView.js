@@ -5,8 +5,11 @@ const db = require("../../database/dbConnector");
 
 router.get('/', async (req, res) => {
     try{
-        const treeview = await db.query("select r.region_name, c.country_name, ci.city_name from regions r, countries c, cities ci where r.region_id = c.region_id and ci.country_id = c.country_id order by r.region_name, c.country_name, ci.city_name", { type: db.QueryTypes.SELECT });
-        res.status(200).json({
+      //const treeview = await db.query("select r.region_name, c.country_name, ci.city_name from regions r, countries c, cities ci where r.region_id = c.region_id and ci.country_id = c.country_id order by r.region_name, c.country_name, ci.city_name", { type: db.QueryTypes.SELECT });
+      const treeview = await db.query("SELECT r.region_name, c.country_name, ci.city_name FROM regions r LEFT JOIN countries c ON r.region_id = c.region_id LEFT JOIN cities ci ON c.country_id = ci.country_id order by r.region_name, c.country_name, ci.city_name", { type: db.QueryTypes.SELECT });
+
+      
+       res.status(200).json({
             message: 'Returning treeview',
             quantity: treeview.length,
             treeview

@@ -27,7 +27,7 @@ async function listAllCompanies() {
                 <td>${data.companies[i].city_name}</td>
                 <td>${data.companies[i].company_address}</td>
                 <td>${data.companies[i].company_email}</td>
-                <td><a onclick="editUser('${data.companies[i].company_id}')"><i class="fas fa-edit"></i></a> | <a onclick="removeUser('${data.companies[i].company_id}')"><i class="fas fa-user-times"></i></a></td>
+                <td><a onclick="editCompany('${data.companies[i].company_id}')"><i class="fas fa-edit"></i></a> | <a onclick="removeUser('${data.companies[i].company_id}')"><i class="fas fa-user-times"></i></a></td>
 
             </tr>
 			`;

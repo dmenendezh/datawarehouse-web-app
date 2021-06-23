@@ -34,10 +34,23 @@ server.use('/regions/createCity', require('../backend/routes/regions/addCity'));
 server.use('/regions/treeView', require('../backend/routes/regions/treeView'));
 server.use('/regions/listCities', require('../backend/routes/regions/listCities'));
 server.use('/regions/listCitiesCountryId', require('../backend/routes/regions/listCityId'));
+server.use('/regions/listCityById', require('../backend/routes/regions/listCityById'));
+
+server.use('/regions/editRegion', require('../backend/routes/regions/editRegion'));
+server.use('/regions/editCountry', require('../backend/routes/regions/editCountry'));
+server.use('/regions/editCity', require('../backend/routes/regions/editCity'));
+server.use('/regions/listRegionCountryByCity', require('../backend/routes/regions/listRegionCountryByCity'));
+server.use('/regions/listCountryByRegion', require('../backend/routes/regions/listCountryByRegion'));
+
+server.use('/regions/deleteRegion', require('../backend/routes/regions/deleteRegion'));
+server.use('/regions/deleteCountry', require('../backend/routes/regions/deleteCountry'));
+server.use('/regions/deleteCity', require('../backend/routes/regions/deleteCity'));
 
 //company
 server.use('/companies/createCompany', require('../backend/routes/companys/addCompany'));
 server.use('/companies/listCompanies', require('../backend/routes/companys/listCompanies'));
+server.use('/companies/listCompanyById', require('../backend/routes/companys/listCompanyById'));
+server.use('/companies/editCompany', require('../backend/routes/companys/editCompany'));
 
 //contacts
 server.use('/contacts/createContact', require('../backend/routes/contacts/addContact'));
