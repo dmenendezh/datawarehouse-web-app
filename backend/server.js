@@ -51,6 +51,7 @@ server.use('/companies/createCompany', require('../backend/routes/companys/addCo
 server.use('/companies/listCompanies', require('../backend/routes/companys/listCompanies'));
 server.use('/companies/listCompanyById', require('../backend/routes/companys/listCompanyById'));
 server.use('/companies/editCompany', require('../backend/routes/companys/editCompany'));
+server.use('/companies/removeCompany', require('../backend/routes/companys/removeCompany'));
 
 //contacts
 server.use('/contacts/createContact', require('../backend/routes/contacts/addContact'));
@@ -60,6 +61,7 @@ server.use('/contacts/editContact', require('../backend/routes/contacts/editCont
 server.use('/contacts/searchContact', require('../backend/routes/contacts/searchContact'));
 server.use('/contacts/addContactChannel', require('../backend/routes/contacts/channels/addContactChannel'));
 server.use('/contacts/deleteSelectedContacts', require('../backend/routes/contacts/deleteSelectedContacts'));
+server.use('/contacts/removeContact', require('../backend/routes/contacts/removeContact'));
 
 server.post("/uploadPhoto", function(req, res) {
     console.log("Llego uploadPhoto!");

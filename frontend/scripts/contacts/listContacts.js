@@ -24,7 +24,7 @@ async function listAllContacts() {
                 <td>${data.contacts[i].company_name}</td>
                 <td>${data.contacts[i].contact_charge}</td>
                 <td>${data.contacts[i].contact_interest}% <progress class="contactprogress" id="file" max="100" value="${data.contacts[i].contact_interest}"></progress></td>
-                <td><a onclick="editUser('${data.contacts[i].company_id}')"><i class="fas fa-edit"></i></a> | <a onclick="removeUser('${data.contacts[i].company_id}')"><i class="fas fa-user-times"></i></a></td>
+                <td><a onclick="editContact('${data.contacts[i].contact_id}')"><i class="fas fa-edit"></i></a> | <a onclick="removeContact('${data.contacts[i].contact_id}')"><i class="fas fa-user-times"></i></a></td>
             </tr>`;
 			$tbody_contacts.appendChild(contactContainer);
 		}

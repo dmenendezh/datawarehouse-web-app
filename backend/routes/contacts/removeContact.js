@@ -4,19 +4,20 @@ const Contact = require('../../models/Contact');
 const db = require("../../database/dbConnector");
 const cors = require('cors')
 
-router.delete('/:contactmail', /*mdGlobal.validateToken, mdUsers.userRol,*/ async (req, res) => {
+router.delete('/:contactid', /*mdGlobal.validateToken, mdUsers.userRol,*/ async (req, res) => {
     try{
-        console.log("contact a borrar= " + req.params.contactmail);
+        console.log("contact a borrar= " + req.params.contactid);
 
-        const delChannelsContact = await db.query("delete from channels where contact_id = (select contact_id from contacts where contact_email = '"+ req.params.contactmail + "')", { type: db.QueryTypes.DELETE });
+        const delChannelsContact = await db.query("delete from channels where contact_id =" + req.params.contactid , { type: db.QueryTypes.DELETE });
 
-        const deletedContact = await Contact.contactModel
-        .destroy({ where: { contact_email: req.params.contactmail } })
+        const rst = await Contact.contactModel
+        .destroy({ where: { contact_id: req.params.contactid } })
         .catch(err => throwException(err, res));
+
 
         res.status(201).json({
             message: 'Contact deleted:',
-            deletedContact
+            rst
         });
     }catch(err){
         console.log(err.message);

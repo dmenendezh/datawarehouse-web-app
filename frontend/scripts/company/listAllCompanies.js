@@ -17,8 +17,6 @@ async function listAllCompanies() {
           
           
             const companyContainer = document.createElement('tbody');
-            const endPointRemove = `http://localhost:3000/companies/removeCompany/${data.companies[i].company_id}`
-            const endPointEdit = `http://localhost:3000/companies/editCompany/${data.companies[i].company_id}`
 
 			companyContainer.innerHTML = `            
             <tr>
@@ -27,7 +25,7 @@ async function listAllCompanies() {
                 <td>${data.companies[i].city_name}</td>
                 <td>${data.companies[i].company_address}</td>
                 <td>${data.companies[i].company_email}</td>
-                <td><a onclick="editCompany('${data.companies[i].company_id}')"><i class="fas fa-edit"></i></a> | <a onclick="removeUser('${data.companies[i].company_id}')"><i class="fas fa-user-times"></i></a></td>
+                <td><a onclick="editCompany('${data.companies[i].company_id}')"><i class="fas fa-edit"></i></a> | <a onclick="removeCompany('${data.companies[i].company_id}')"><i class="fas fa-user-times"></i></a></td>
 
             </tr>
 			`;

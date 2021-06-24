@@ -249,8 +249,26 @@ btnEditConfirmModal.addEventListener('click', async (event) => {
         const response = await fetch(endpoint, options)
         const dataresponse = await response.json();
         if (response.status === 201) {
-            window.location.href = 'regions.html';
-        }
+            swal({
+                title: "País editado existosamente",
+                text: "",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: true
+              }, function(){
+                    window.location.href = "regions.html";
+              });
+        }else{
+            swal({
+                title: "Error",
+                text: "No ha podido editarse el país.",
+                type: "error",
+                timer: 3000,
+                showConfirmButton: true
+              }, function(){
+                    window.location.href = "regions.html";
+              });
+        } 
 
     } else if (TYPE == 'city') {
 
@@ -280,7 +298,15 @@ btnEditConfirmModal.addEventListener('click', async (event) => {
         const response = await fetch(endpoint, options)
         const data_r = await response.json();
         if (response.status === 201) {
-            window.location.href = 'regions.html';
+            swal({
+                title: "Ciudad editada existosamente",
+                text: "",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: true
+              }, function(){
+                    window.location.href = "regions.html";
+              });
         }
 
     } else if (TYPE == 'region') {
@@ -307,7 +333,15 @@ btnEditConfirmModal.addEventListener('click', async (event) => {
         const response = await fetch(endpoint, options)
         const data_region = await response.json();
         if (response.status === 201) {
-            window.location.href = 'regions.html';
+            swal({
+                title: "Region editada existosamente",
+                text: "",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: true
+              }, function(){
+                    window.location.href = "regions.html";
+              });        
         }
     }
 });
@@ -419,14 +453,19 @@ $btnConfirm.addEventListener('click', async (event) => {
                 'Access-Control-Allow-Headers': '*'
             }
         }
-        console.log(options);
 
         const response = await fetch('http://localhost:3000/regions/createRegion', options)
         const data = await response.json()
-        console.log(data);
         if (response.status === 201) {
-            console.log(data);
-            window.location.href = 'regions.html';
+            swal({
+                title: "Region creada existosamente",
+                text: "",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: true
+              }, function(){
+                    window.location.href = "regions.html";
+              }); 
         }
 
     } else if (TYPE == 'country') {
@@ -448,14 +487,19 @@ $btnConfirm.addEventListener('click', async (event) => {
                 'Access-Control-Allow-Headers': '*'
             }
         }
-        console.log(options);
 
         const response = await fetch('http://localhost:3000/regions/createCountry', options)
         const data = await response.json()
-        console.log(data);
         if (response.status === 201) {
-            console.log(data);
-            window.location.href = 'regions.html';
+            swal({
+                title: "País creado existosamente",
+                text: "",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: true
+              }, function(){
+                    window.location.href = "regions.html";
+              });        
         }
     } else if (TYPE == 'city') {
         const countryId = document.getElementById('cmbCountrys');
@@ -482,8 +526,15 @@ $btnConfirm.addEventListener('click', async (event) => {
         const data = await response.json()
         console.log(data);
         if (response.status === 201) {
-            console.log(data);
-            window.location.href = 'regions.html';
+            swal({
+                title: "Región creada existosamente",
+                text: "",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: true
+              }, function(){
+                    window.location.href = "regions.html";
+              });  
         }
     }
 });

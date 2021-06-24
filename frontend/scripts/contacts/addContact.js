@@ -40,8 +40,26 @@ btnSaveContact.addEventListener("click",  async (e) => {
     const data = await response.json()
     console.log(data);
     if (response.status === 201) {
-        console.log(data);
-        window.location.href = 'dashboard.html';
+        swal({
+            title: "Contacto agregado existosamente",
+            text: "",
+            type: "success",
+            timer: 3000,
+            showConfirmButton: true
+          }, function(){
+                window.location.href = "dashboard.html";
+          });
+
+    }else{
+        swal({
+            title: "Error",
+            text: "Ha ocurrido un error. Contactase con el adminstrador",
+            type: "error",
+            timer: 3000,
+            showConfirmButton: true
+          }, function(){
+                window.location.href = "dashboard.html";
+          });
     }
 });
 

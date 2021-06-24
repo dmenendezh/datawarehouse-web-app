@@ -27,8 +27,6 @@ async function registerUser() {
         usr_password: password.value
     }
 
-    console.log(user);
-
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
@@ -43,7 +41,24 @@ async function registerUser() {
     const data = await response.json()
     console.log(data);
     if (response.status === 201) {
-        console.log(data);
-        window.location.href = 'users.html';
+        swal({
+            title: "Usuario registrado existosamente",
+            text: "",
+            type: "success",
+            timer: 3000,
+            showConfirmButton: true
+          }, function(){
+                window.location.href = "users.html";
+          });
+    }else{
+        swal({
+            title: "Error",
+            text: "Ha ocurrido un error. Contactese con el adminitrador del sistema",
+            type: "error",
+            timer: 3000,
+            showConfirmButton: true
+          }, function(){
+                window.location.href = "users.html";
+          });
     }
 }

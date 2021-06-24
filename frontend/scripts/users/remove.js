@@ -1,7 +1,14 @@
 async function removeUser (usuario) {
-    const opcion = confirm("¿Está seguro de que desea eliminar el usuario?");
-    
-    if(opcion === true){//doy de baja
+    swal({
+        title: "¿Está seguro?",
+        text: "El usuario será eliminado del sistema",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Si, eliminarlo!",
+        closeOnConfirm: false
+      },
+      async function(){
         const options = {
             method: 'DELETE',
             headers: {    
@@ -17,8 +24,6 @@ async function removeUser (usuario) {
         if (response.status === 201) {
             window.location.href = 'users.html';
         }    
-    }else{//no hago nada
-        window.location.href = 'users.html';
-    }
+      });
 }
 

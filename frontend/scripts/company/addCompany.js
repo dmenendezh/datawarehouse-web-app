@@ -38,14 +38,19 @@ $btnConfirmModalCompany.addEventListener("click",  async (e) => {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': '*'}
     }
-    console.log(options);
     
     const response = await fetch('http://localhost:3000/companies/createCompany', options)
     const data = await response.json()
-    console.log(data);
     if (response.status === 201) {
-        console.log(data);
-        window.location.href = 'companys.html';
+        swal({
+            title: "Compañia agregada existosamente",
+            text: "",
+            type: "success",
+            timer: 3000,
+            showConfirmButton: true
+          }, function(){
+                window.location.href = "companys.html";
+          });
     }
 });
 
