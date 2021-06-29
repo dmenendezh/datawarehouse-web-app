@@ -16,7 +16,6 @@
          <!-- Navbar-->
          <ul class="navbar-nav ml-auto ml-md-0">
             <span id="usrName" class="usrname_identifier"></span>
-
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -80,9 +79,7 @@
                                  <button id="btnCreateContact" class="btn btn-primary btn-register" type="button">Nuevo contacto</button>
                               </div>
                            </form>
-                           
                         </div>
-                        
                      </div>
                      <a class="remove-selected-users hidden" onclick="removeUsersSelected('${data.contacts[i].company_id}')"><i class="fas fa-trash"></i> Eliminar contactos</a>
                      <div id="cardBody" class="card-body">
@@ -97,11 +94,9 @@
                                     <th>Cargo</th>
                                     <th>Interés</th>
                                     <th id="btns_actions">Editar | Eliminar</th>
-                                    
                                  </tr>
                               </thead>
                               <tbody id="tbody_contacts">
-
                               </tbody>
                            </table>
                         </div>
@@ -178,7 +173,6 @@
                                     </tr>
                                  </thead>
                                  <tbody id="tbody_channels">
-
                                  </tbody>
                               </table>
                            </div>
@@ -189,6 +183,130 @@
                         <a id="btnGoBack" class="btn btn-primary">Volver</a>
                      </div>
                   </form>
+
+
+                  <form hidden id="layoutEditNewContact" enctype="multipart/form-data" action="uploadPhoto" method="post">
+                     <input hidden class="form-control-account form-control prueva" id="edit_ContactId" type="text" />
+
+                     <div class="containercolor">
+                        <div class="avatar-wrapper">
+                           <img class="profile-pic" src="" />
+                           <div class="upload-button">
+                              <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                           </div>
+                           <input id="edit_photoUpload" onchange="createImage(event)" class="file-upload" type="file" accept="image/*"/>
+                        </div>
+                        <div class="containerform">
+                           <div class="group-account div-name">
+                              <label class="small mb-1" for="edit_inputContactName">Nombre</label>
+                              <input class="form-control-account form-control prueva" id="edit_inputContactName" type="text" placeholder="Ingresar nombre" />
+                           </div>
+                           <div class="group-account">
+                              <label class="small mb-1" for="edit_inputContactSurName">Apellido</label>
+                              <input class="form-control-account form-control prueva" id="edit_inputContactSurName" type="text" placeholder="Ingresar apellido" />
+                           </div>
+                           <div class="group-account">
+                              <label class="small mb-1" for="inputCargo">Cargo</label>
+                              <input class="form-control-account form-control prueva" id="edit_inputCargo" type="text" placeholder="Ingresar cargo" />
+                           </div>
+                           <div class="group-account">
+                              <label class="small mb-1" for="inputContactEmail">Email</label>
+                              <input class="form-control-account form-control prueva" id="edit_inputContactEmail" type="email" placeholder="Ingresar email" />
+                           </div>
+                           <div id="edit_CmpCmb" class="group-account">
+                              <label class="small mb-1" for="edit_cmbContactCompany">Compañia</label>                                                
+                              <select class="form-control py-2 prueva" id="edit_cmbContactCompany"></select>                                           
+                           </div>
+                        </div>
+                     </div>
+                     <div class="ubication-container">
+                        <div id="edit_regionCmb" class="group-account">
+                           <label class="small mb-1" for="edit_contactCmbRegion">Region</label>                                                
+                           <select class="form-control py-2 prueva" id="edit_contactCmbRegion"></select>                                           
+                        </div>
+                        <div id="edit_countryCmb" class="group-account">
+                           <label class="small mb-1" for="edit_contactCmbCountry">Pais</label>                                                
+                           <select class="form-control py-2 prueva" id="edit_contactCmbCountry"></select>                                           
+                        </div>
+                        <div id="edit_cmbCity" class="group-account">
+                           <label class="small mb-1" for="edit_contactCmbCity">Ciudad</label>                                                
+                           <select class="form-control py-2 prueva" id="edit_contactCmbCity"></select>                                           
+                        </div>
+                        <div class="group-account">
+                           <label class="small mb-1" for="edit_inputContactAddress">Direccion</label>
+                           <input class="form-control-account form-control prueva" id="edit_inputContactAddress" type="text" placeholder="Ingresar una dirección" />
+                        </div>
+                     </div>
+                     <div class="slidecontainer">
+                        <label class="small mb-1" for="edit_interestSelector">Interés</label>
+                        <input id="edit_slider" type="range" min="0" max="100" step="25"><b><span id="edit_interestSelector"></span></b></input>
+                     </div>
+                     <br>
+                     <div id="edit_cardHeader" class="card mb-4">
+                        <div class="card-header">
+                           <button id="edit_btnCreate" class="btn btn-primary btn-register" data-open="modaledit" type="button">Agregar canal</button>
+                        </div>
+                        <div id="edit_cardBody" class="card-body">
+                           <div class="table-responsive">
+                              <table class="table" id="edit_dataTable" width="100%" cellspacing="0">
+                                 <thead>
+                                    <tr>
+                                       <th>Canal de contacto</th>
+                                       <th>Cuenta de usuario</th>
+                                       <th>Preferencias</th>
+                                       <th>Eliminar</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody id="edit_tbody_channels">
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="btns-account form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <a id="edit_btnSaveContact" type="submit" class="btn btn-primary">Guardar</a>
+                        <a id="edit_btnGoBack" class="btn btn-primary">Volver</a>
+                     </div>
+                  </form>
+
+
+                  <div class="modal" id="modaledit" data-animation="slideInOutLeft">
+                     <div class="modal-dialog">
+                        <section class="modal-content">
+                           <p><strong>Agregar canal de contacto</strong></p>
+                           <form id="addContact_edit">
+                              <div id="addChannel_edit" class="form-group">
+                                 <label class="small mb-1" for="cmbChannel">Canal de contacto</label>                                                
+                                 <select required class="form-control py-1" id="cmbChannel_edit">
+                                    <option value="Telefono">Telefono</option>
+                                    <option value="Whatsapp">Whatsapp</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="LinkedIn">LinkedIn</option>
+                                 </select>
+                              </div>
+                              <div id="addAccount_edit" class="form-group">
+                                 <label class="small mb-1" for="inputAccount">Cuenta de usuario</label>                                                
+                                 <input required type="text" class="form-control py-1" id="inputAccount_edit">                                        
+                              </div>
+                              <div id="addPreferences_edit" class="form-group">
+                                 <label class="small mb-1" for="cmbPreferences">Preferencias</label>                                                
+                                 <select required class="form-control py-1" id="cmbPreferences_edit">
+                                    <option value="Sin preferencia">Sin preferencia</option>
+                                    <option value="Canal favorito">Canal favorito</option>
+                                    <option value="No molestar">No molestar</option>
+                                 </select>
+                              </div>
+                              <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                 <a id="btnConfirmModalContactedit" class="btn btn-primary">Agregar</a>
+                                 <a id="backModalContactedit" class="btn btn-info">Volver</a>
+                              </div>
+                           </form>
+                        </section>
+                     </div>
+                  </div>
+
+
                   <div class="modal" id="modal1" data-animation="slideInOutLeft">
                      <div class="modal-dialog">
                         <section class="modal-content">
@@ -251,10 +369,10 @@
       <script src="scripts/contacts/addChannelContact.js"></script>
       <script src="scripts/contacts/deleteSelectedContacts.js"></script>
       <script src="scripts/users/permissions.js"></script>
-      
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
       <script src="scripts/contacts/removeContact.js"></script>
+      <script src="scripts/contacts/editContact.js"></script>
 
    </body>
 </html>

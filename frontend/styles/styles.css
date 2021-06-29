@@ -10349,7 +10349,8 @@ body {
 }
 
 .btn-register{
-  margin-left: 40rem;
+  /*margin-left: 40rem;*/
+  float: right;
 }
 
 /*propiedades modal*/

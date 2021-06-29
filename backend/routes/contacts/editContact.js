@@ -1,8 +1,9 @@
 const { Router } = require('express');
 const router = Router();
 const Contact = require('../../models/Contact');
+const cors = require('cors')
 
-router.put('/:contactmail', /*mdGlobal.validateToken, mdGlobal.checkEmptyBody, mdUsers.userRol,*/ async (req, res) => {
+router.put('/:contactId', /*mdGlobal.validateToken, mdGlobal.checkEmptyBody, mdUsers.userRol,*/ async (req, res) => {
     const name = req.body.contact_name;
     const surname = req.body.contact_surname;
     const charge = req.body.contact_charge;
@@ -18,7 +19,7 @@ router.put('/:contactmail', /*mdGlobal.validateToken, mdGlobal.checkEmptyBody, m
     .update({ contact_name: name, contact_surname: surname, 
         contact_charge: charge, contact_email: mail,
         company_id: company_id, region_id: region_id, country_id: country_id, city_id: city_id,
-    contact_address: address, contact_interest: interest }, { where: { contact_email: req.params.contactmail } })
+    contact_address: address, contact_interest: interest }, { where: { contact_id: req.params.contactId } })
     .catch(err => throwException(err, res));
 
     res.status(201).json({
@@ -33,5 +34,15 @@ const throwException = (err, res) => {
         error: err
     });
 };
+
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+  });
+router.use(cors());
+
+
 
 module.exports = router;

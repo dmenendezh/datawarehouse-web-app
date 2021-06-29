@@ -62,6 +62,14 @@ server.use('/contacts/searchContact', require('../backend/routes/contacts/search
 server.use('/contacts/addContactChannel', require('../backend/routes/contacts/channels/addContactChannel'));
 server.use('/contacts/deleteSelectedContacts', require('../backend/routes/contacts/deleteSelectedContacts'));
 server.use('/contacts/removeContact', require('../backend/routes/contacts/removeContact'));
+server.use('/contacts/listContactById', require('../backend/routes/contacts/listContactById'));
+server.use('/contacts/listChannellsByContact', require('../backend/routes/contacts/channels/listChannellsByContact'));
+server.use('/contacts/channels/removeContactChannels', require('../backend/routes/contacts/channels/removeContactChannels'));
+
+//contacts/editContact
+
+
+
 
 server.post("/uploadPhoto", function(req, res) {
     console.log("Llego uploadPhoto!");
