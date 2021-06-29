@@ -2,7 +2,7 @@ sessionStorage.clear();
 const mail = document.getElementById('inputEmailAddress');
 const pwd = document.getElementById('inputPassword');
 
-$btnLogin.addEventListener('click', (event) =>{
+$btnLogin.addEventListener('click', (event) => {
     event.preventDefault();
     loginUser();
 });
@@ -15,11 +15,12 @@ async function loginUser() {
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     console.log(user);
@@ -37,5 +38,4 @@ async function loginUser() {
 function saveToken(data) {
     sessionStorage.setItem('Token', JSON.stringify(data))
     sessionStorage.setItem('Prueba', "VAL DE PRUEBA")
-
 }

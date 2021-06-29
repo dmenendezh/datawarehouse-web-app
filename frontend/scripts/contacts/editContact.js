@@ -1,23 +1,24 @@
-async function editContact(contactId){
+async function editContact(contactId) {
     document.getElementById("layoutEditNewContact").removeAttribute("hidden");
-    document.getElementById("cardHeader").setAttribute("hidden",true);
-    document.getElementById("layoutAddNewContact").setAttribute("hidden",true);
-    document.getElementById("edit_ContactId").setAttribute("value",contactId);
+    document.getElementById("cardHeader").setAttribute("hidden", true);
+    document.getElementById("layoutAddNewContact").setAttribute("hidden", true);
+    document.getElementById("edit_ContactId").setAttribute("value", contactId);
 
-    
+
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     const endpoint = `http://localhost:3000/contacts/listContactById/${contactId}`;
     const response = await fetch(endpoint, options)
     const data = await response.json()
-    
+
     if (response.status === 200) {
         console.log(data);
         console.log(data.contact[0].contact_name);
@@ -27,13 +28,13 @@ async function editContact(contactId){
         document.getElementById("edit_inputContactSurName").setAttribute("value", data.contact[0].contact_surname)
         document.getElementById("edit_inputCargo").setAttribute("value", data.contact[0].contact_charge)
         document.getElementById("edit_inputContactEmail").setAttribute("value", data.contact[0].contact_email)
-   
+
         /*load combo compañia */
         const companyName = data.contact[0].company_name;
         const companyId = data.contact[0].company_id;
 
         const option_company = document.createElement('option');
-        option_company.setAttribute('value',companyId);
+        option_company.setAttribute('value', companyId);
         option_company.innerHTML = `${companyName}`;
         edit_cmbContactCompany.appendChild(option_company);
 
@@ -42,7 +43,7 @@ async function editContact(contactId){
         const regionId = data.contact[0].region_id;
 
         const option_region = document.createElement('option');
-        option_region.setAttribute('value',regionId);
+        option_region.setAttribute('value', regionId);
         option_region.innerHTML = `${regionName}`;
         edit_contactCmbRegion.appendChild(option_region);
 
@@ -51,7 +52,7 @@ async function editContact(contactId){
         const countryId = data.contact[0].country_id;
 
         const option_country = document.createElement('option');
-        option_country.setAttribute('value',countryId);
+        option_country.setAttribute('value', countryId);
         option_country.innerHTML = `${countryName}`;
         edit_contactCmbCountry.appendChild(option_country);
 
@@ -60,7 +61,7 @@ async function editContact(contactId){
         const cityId = data.contact[0].city_id;
 
         const option_city = document.createElement('option');
-        option_city.setAttribute('value',cityId);
+        option_city.setAttribute('value', cityId);
         option_city.innerHTML = `${cityName}`;
         edit_contactCmbCity.appendChild(option_city);
 
@@ -71,28 +72,29 @@ async function editContact(contactId){
 
         loadContactChannells(contactId);
     }
- 
+
 }
 
 
 
-async function loadContactChannells(contactId) {  
+async function loadContactChannells(contactId) {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
-    
+
     const response = await fetch(`http://localhost:3000/contacts/listChannellsByContact/${contactId}`, options)
     const data = await response.json();
 
-    if (response.status === 200) {        
+    if (response.status === 200) {
 
-        for (let i = 0; i < data.quantity; i++) {   
-            const channel_id = data.channel[i].channel_id;       
+        for (let i = 0; i < data.quantity; i++) {
+            const channel_id = data.channel[i].channel_id;
             const edit_channell = data.channel[i].channel_name;
             const edit_account = data.channel[i].channel_account;
             const edit_preferences = data.channel[i].channel_preferences;
@@ -107,72 +109,76 @@ async function loadContactChannells(contactId) {
                 <td id="${i}"><a onclick="removeChannel('${i}')"><i class="fas fa-trash"></i></a></td>
             </tr>`;
             edit_tbody_channels.appendChild(channelContainer);
-    
-		}
+
+        }
     }
 
-    $('#edit_dataTable').dataTable( {
-        pageLength : 50, "ordering": false } );
+    $('#edit_dataTable').dataTable({
+        pageLength: 50,
+        "ordering": false
+    });
 
-        document.getElementById("edit_dataTable_length").setAttribute("hidden","true");
-        document.getElementById("edit_dataTable_filter").setAttribute("hidden","true");
-        document.getElementById("edit_dataTable_info").setAttribute("hidden","true");
-        document.getElementById("edit_dataTable_paginate").setAttribute("hidden","true");       
-        
-} 
+    document.getElementById("edit_dataTable_length").setAttribute("hidden", "true");
+    document.getElementById("edit_dataTable_filter").setAttribute("hidden", "true");
+    document.getElementById("edit_dataTable_info").setAttribute("hidden", "true");
+    document.getElementById("edit_dataTable_paginate").setAttribute("hidden", "true");
+
+}
 
 
-edit_btnGoBack.addEventListener("click", e => {   
-    window.location.reload();   
+edit_btnGoBack.addEventListener("click", e => {
+    window.location.reload();
 });
 
 
 
 
-async function loadCompanies(companyId) {  
+async function loadCompanies(companyId) {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
-    
+
     const response = await fetch('http://localhost:3000/companies/listCompanies', options)
     const data = await response.json();
 
-    if (response.status === 200) {        
+    if (response.status === 200) {
         const optionCompanies = document.createElement('option');
-        optionCompanies.setAttribute('value',"");
+        optionCompanies.setAttribute('value', "");
         optionCompanies.innerHTML = ``;
         cmbContactCompany.appendChild(optionCompanies);
 
-        for (let i = 0; i < data.quantity; i++) {            
+        for (let i = 0; i < data.quantity; i++) {
             const edit_companyName = data.companies[i].company_name;
             const edit_companyId = data.companies[i].company_id;
 
-            if(companyId != edit_companyId){
+            if (companyId != edit_companyId) {
                 const optionCompanies = document.createElement('option');
-                optionCompanies.setAttribute('value',edit_companyId);
+                optionCompanies.setAttribute('value', edit_companyId);
                 optionCompanies.innerHTML = `${edit_companyName}`;
-                edit_cmbContactCompany.appendChild(optionCompanies); 
+                edit_cmbContactCompany.appendChild(optionCompanies);
             }
-		}
+        }
     }
 }
 
-async function loadRegions(regionId) {  
+async function loadRegions(regionId) {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
-    
+
 
     const response = await fetch('http://localhost:3000/regions/listRegion', options)
     const data = await response.json()
@@ -182,9 +188,9 @@ async function loadRegions(regionId) {
             const edit_regionName = data.regions[i].region_name;
             const edit_regionId = data.regions[i].region_id;
 
-            if(regionId != edit_regionId){
+            if (regionId != edit_regionId) {
                 const option = document.createElement('option');
-                option.setAttribute('value',edit_regionId);
+                option.setAttribute('value', edit_regionId);
                 option.innerHTML = `${edit_regionName}`;
                 edit_contactCmbRegion.appendChild(option);
             }
@@ -333,11 +339,12 @@ edit_btnSaveContact.addEventListener('click', async (event) => {
 edit_contactCmbRegion.addEventListener('change', async (event) => {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     limpiarcombos(edit_contactCmbCountry);
@@ -351,7 +358,7 @@ edit_contactCmbRegion.addEventListener('change', async (event) => {
     const dataCountries = await responseCountries.json()
     if (responseCountries.status === 200) {
         const optionCountry = document.createElement('option');
-        optionCountry.setAttribute('value',"");
+        optionCountry.setAttribute('value', "");
         optionCountry.innerHTML = ``;
         edit_contactCmbCountry.appendChild(optionCountry);
         for (let i = 0; i < dataCountries.quantity; i++) {
@@ -359,7 +366,7 @@ edit_contactCmbRegion.addEventListener('change', async (event) => {
             const countryId = dataCountries.countries[i].country_id;
 
             const optionCountry = document.createElement('option');
-            optionCountry.setAttribute('value',countryId);
+            optionCountry.setAttribute('value', countryId);
             optionCountry.innerHTML = `${countryName}`;
             edit_contactCmbCountry.appendChild(optionCountry);
         }
@@ -370,11 +377,12 @@ edit_contactCmbRegion.addEventListener('change', async (event) => {
 edit_contactCmbCountry.addEventListener('change', async (event) => {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     limpiarcombos(edit_contactCmbCity);
@@ -386,7 +394,7 @@ edit_contactCmbCountry.addEventListener('change', async (event) => {
     const dataCities = await responseCities.json()
     if (responseCities.status === 200) {
         const option = document.createElement('option');
-        option.setAttribute('value',"");
+        option.setAttribute('value', "");
         option.innerHTML = ``;
         edit_contactCmbCity.appendChild(option);
         for (let i = 0; i < dataCities.quantity; i++) {
@@ -394,7 +402,7 @@ edit_contactCmbCountry.addEventListener('change', async (event) => {
             const countryId = dataCities.cities[i].city_id;
 
             const option = document.createElement('option');
-            option.setAttribute('value',countryId);
+            option.setAttribute('value', countryId);
             option.innerHTML = `${countryName}`;
             edit_contactCmbCity.appendChild(option);
         }
@@ -404,35 +412,35 @@ edit_contactCmbCountry.addEventListener('change', async (event) => {
 
 const limpiarcombos = ($select) => {
     for (let i = $select.options.length; i >= 0; i--) {
-      $select.remove(i);
+        $select.remove(i);
     }
 };
 
 
-$('#edit_dataTable tbody').on( 'click', 'tr > td', function (e) {
+$('#edit_dataTable tbody').on('click', 'tr > td', function(e) {
     const table = $('#edit_dataTable').DataTable();
-    const index = table.row( this ).index();
-    if(index == $(this).attr('id')){
+    const index = table.row(this).index();
+    if (index == $(this).attr('id')) {
         //alert( 'Row index: '+ index);
         table.row(`:eq(${index})`).remove().draw();
 
     }
-} );
+});
 
 
-backModalContactedit.addEventListener("click", e => {   
+backModalContactedit.addEventListener("click", e => {
     document.querySelectorAll("#modaledit")[0].classList.remove(isVisible);
 });
 
 
-btnConfirmModalContactedit.addEventListener("click",  async (e) => {   
+btnConfirmModalContactedit.addEventListener("click", async (e) => {
     const channel = document.getElementById('cmbChannel_edit').value;
     const preferences = document.getElementById('cmbPreferences_edit').value;
     const account = document.getElementById('inputAccount_edit').value;
 
     const datagridIndex = $("#edit_tbody_channels tr").length;
 
-    if(datagridIndex == 0){
+    if (datagridIndex == 0) {
         const channelContainer = document.createElement('tr');
         channelContainer.classList.add("tr_0");
         channelContainer.innerHTML = `            
@@ -440,14 +448,14 @@ btnConfirmModalContactedit.addEventListener("click",  async (e) => {
             <td>${channel}</td>
             <td>${account}</td>
             <td>${preferences}</td>
-            <td><a onclick="removeUser('${channel}')"><i class="fas fa-user-times"></i></a></td>
+            <td><a onclick="removeUser('${channel}')"><i class="fas fa-trash"></i></a></td>
         </tr>`;
         edit_tbody_channels.appendChild(channelContainer);
-    }else{
+    } else {
         const channelContainer = document.createElement('tr');
-        
+
         const index = datagridIndex;
-        channelContainer.classList.add("tr_"+index);
+        channelContainer.classList.add("tr_" + index);
         channelContainer.innerHTML = `            
         <tr>
             <td>${channel}</td>
@@ -459,5 +467,5 @@ btnConfirmModalContactedit.addEventListener("click",  async (e) => {
     }
     const modal = document.getElementById("modaledit");
     modal.classList.remove("is-visible");
-    
+
 });

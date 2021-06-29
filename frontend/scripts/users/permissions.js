@@ -1,33 +1,33 @@
-window.addEventListener("load", function(event) {    
-    let token = sessionStorage.getItem('Token');
-    const headerData = parseJwt(token);
+window.addEventListener("load", function(event) {
+  let token = sessionStorage.getItem('Token');
+  const headerData = parseJwt(token);
 
-    if(headerData.admin == 1){//is admin
-        usr_link.removeAttribute("hidden");
-    }else{
-        usr_link.setAttribute("hidden","true");
-    }
-    usrName.appendChild(document.createTextNode(headerData.usr_name + " " +  headerData.usr_surname));
-    
+  if (headerData.admin == 1) { //is admin
+      usr_link.removeAttribute("hidden");
+  } else {
+      usr_link.setAttribute("hidden", "true");
+  }
+  usrName.appendChild(document.createTextNode(headerData.usr_name + " " + headerData.usr_surname));
+
 });
 
 function parseJwt(token) {
-    try {
+  try {
       const base64HeaderUrl = token.split(',')[1];
       const base64Header = base64HeaderUrl.replace('-', '+').replace('_', '/');
 
       let tw = base64Header.split(':')[1];
-      tw = tw.slice(1,tw.length)
-      tw = tw.slice(0,tw.length -2)
+      tw = tw.slice(1, tw.length)
+      tw = tw.slice(0, tw.length - 2)
 
       const token_part = tw.split('.')[1];
       const headerData = JSON.parse(window.atob(token_part));
       return headerData;
 
-    } catch (err) {
+  } catch (err) {
       return false;
-    }
   }
+}
 
 // window.addEventListener('storage', function(e) {  
 //   console.log("Key: " + e.key);

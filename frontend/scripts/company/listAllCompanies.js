@@ -1,24 +1,25 @@
 listAllCompanies();
 
-async function listAllCompanies() {   
+async function listAllCompanies() {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     const response = await fetch('http://localhost:3000/companies/listCompanies', options)
     const data = await response.json()
     if (response.status === 200) {
         for (let i = 0; i < data.quantity; i++) {
-          
-          
+
+
             const companyContainer = document.createElement('tbody');
 
-			companyContainer.innerHTML = `            
+            companyContainer.innerHTML = `            
             <tr>
                 <td>${data.companies[i].company_name}</td>
                 <td>${data.companies[i].country_name}</td>
@@ -29,8 +30,8 @@ async function listAllCompanies() {
 
             </tr>
 			`;
-			$dataTable.appendChild(companyContainer);
-		}
+            $dataTable.appendChild(companyContainer);
+        }
 
 
     }

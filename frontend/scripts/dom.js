@@ -39,7 +39,8 @@ const $flagValue = document.querySelector('#flagValue');
 const $flagParentValue = document.querySelector('#flagParentValue');
 
 
-const $crud_buttons = document.querySelector('#crud_buttons');7
+const $crud_buttons = document.querySelector('#crud_buttons');
+7
 const $btnBack = document.querySelector('#btnBack');
 
 
@@ -98,15 +99,3 @@ const $tbody_contacts = document.querySelector('#tbody_contacts');
 
 
 /* FIN | DOM - Company */
-
-
-
-
-
-
-
-
-
-
-
-

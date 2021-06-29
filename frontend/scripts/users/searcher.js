@@ -1,22 +1,23 @@
 $userSearcher.addEventListener('keyup', (event) => {
-        getSearch();
+    getSearch();
 });
 
 const getSearch = async () => {
     const value = $userSearcher.value;
 
-	event.preventDefault();
+    event.preventDefault();
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     let endpoint = `http://localhost:3000/users/searchUser/${value}`;
-    if(value == ''){
+    if (value == '') {
         endpoint = `http://localhost:3000/users/listall`;
     }
 
@@ -25,11 +26,11 @@ const getSearch = async () => {
 
     if (response.status === 200) {
         console.log("resultado");
-        console.log(data);      
+        console.log(data);
         console.log(data.quantity);
-        $dataTable.innerHTML = '';  
-        
-        if(data.quantity == 0){
+        $dataTable.innerHTML = '';
+
+        if (data.quantity == 0) {
             const usrContainer = document.createElement('div');
             usrContainer.innerHTML = `            
             No existen coincidencias con el nombre ingresado`;
@@ -39,16 +40,16 @@ const getSearch = async () => {
         for (let i = 0; i < data.quantity; i++) {
             console.log(data.usr[i].usr_login);
             let profile = "";
-            if(data.usr[i].usr_admin_flag == 1){
+            if (data.usr[i].usr_admin_flag == 1) {
                 profile = "Administrador";
-            }else{
+            } else {
                 profile = "Básico";
             }
 
             const usrContainer = document.createElement('tbody');
 
             const endpointRemoveUser = `http://localhost:3000/users/removeUser/${data.usr[i].usr_login}`
-			usrContainer.innerHTML = `            
+            usrContainer.innerHTML = `            
             <tr>
                 <td>${data.usr[i].usr_login}</td>
                 <td>${data.usr[i].usr_name}</td>
@@ -58,7 +59,7 @@ const getSearch = async () => {
                 <td><a onclick="editUser('${data.usr[i].usr_login}')"><i class="fas fa-edit"></i></a> | <a onclick="removeUser('${data.usr[i].usr_login}')"><i class="fas fa-user-times"></i></a></td>                
             </tr>
 			`;
-			$dataTable.appendChild(usrContainer);
-        }   
+            $dataTable.appendChild(usrContainer);
+        }
     }
 };

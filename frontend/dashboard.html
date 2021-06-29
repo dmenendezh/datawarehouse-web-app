@@ -15,7 +15,7 @@
          <a class="navbar-brand" href="index.html">Menu</a>
          <!-- Navbar-->
          <ul class="navbar-nav ml-auto ml-md-0">
-            <span id="usrName" class="usrname_identifier"></span>
+            <li id="usrName" class="usrname_identifier"></li>
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -72,7 +72,7 @@
                            <!-- Navbar Search-->
                            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                               <div class="input-group">
-                                 <input id="contactSearcher" class="form-control" type="text" placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2" />
+                                 <input id="contactSearcher" class="form-control" type="text" placeholder="Buscar..." aria-label="Search" />
                                  <div class="input-group-append">
                                     <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                                  </div>
@@ -84,7 +84,7 @@
                      <a class="remove-selected-users hidden" onclick="removeUsersSelected('${data.contacts[i].company_id}')"><i class="fas fa-trash"></i> Eliminar contactos</a>
                      <div id="cardBody" class="card-body">
                         <div class="table-responsive">
-                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                           <table class="table table-bordered" id="dataTable">
                               <thead>
                                  <tr>
                                     <th id="btnselects">Sel.</th>
@@ -105,7 +105,7 @@
                   <form hidden id="layoutAddNewContact" enctype="multipart/form-data" action="uploadPhoto" method="post">
                      <div class="containercolor">
                         <div class="avatar-wrapper">
-                           <img id="photo" class="profile-pic" src="" />
+                           <img id="photo" class="profile-pic" alt="Profile image" src="#" />
                            <div class="upload-button">
                               <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                            </div>
@@ -128,7 +128,7 @@
                               <label class="small mb-1" for="inputContactEmail">Email</label>
                               <input class="form-control-account form-control prueva" id="inputContactEmail" type="email" placeholder="Ingresar email" />
                            </div>
-                           <div id="regionCmb" class="group-account">
+                           <div id="companiaCmb" class="group-account">
                               <label class="small mb-1" for="cmbContactCompany">Compañia</label>                                                
                               <select class="form-control py-2 prueva" id="cmbContactCompany"></select>                                           
                            </div>
@@ -153,17 +153,17 @@
                         </div>
                      </div>
                      <div class="slidecontainer">
-                        <label class="small mb-1" for="interestSelector">Interés</label>
-                        <input id="slider" type="range" min="0" max="100" value="0" step="25"><b><span id="interestValue"></span></b></input>
+                        <label class="small mb-1">Interés</label>
+                        <input id="slider" type="range" min="0" max="100" value="0" step="25"/><b><span id="interestValue"></span></b>
                      </div>
                      <br>
-                     <div id="cardHeader" class="card mb-4">
+                     <div id="cardHeader_channels" class="card mb-4">
                         <div class="card-header">
                            <button id="btnCreate" class="btn btn-primary btn-register" data-open="modal1" type="button">Agregar canal</button>
                         </div>
-                        <div id="cardBody" class="card-body">
+                        <div id="cardBody_channels" class="card-body">
                            <div class="table-responsive">
-                              <table class="table" id="dataTable" width="100%" cellspacing="0">
+                              <table class="table" id="dataTable_channels">
                                  <thead>
                                     <tr>
                                        <th>Canal de contacto</th>
@@ -179,18 +179,15 @@
                         </div>
                      </div>
                      <div class="btns-account form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <a id="btnSaveContact" type="submit" class="btn btn-primary">Guardar</a>
+                        <a id="btnSaveContact" class="btn btn-primary">Guardar</a>
                         <a id="btnGoBack" class="btn btn-primary">Volver</a>
                      </div>
                   </form>
-
-
                   <form hidden id="layoutEditNewContact" enctype="multipart/form-data" action="uploadPhoto" method="post">
                      <input hidden class="form-control-account form-control prueva" id="edit_ContactId" type="text" />
-
                      <div class="containercolor">
                         <div class="avatar-wrapper">
-                           <img class="profile-pic" src="" />
+                           <img class="profile-pic" alt ="Profile pic" src="#" />
                            <div class="upload-button">
                               <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                            </div>
@@ -238,8 +235,8 @@
                         </div>
                      </div>
                      <div class="slidecontainer">
-                        <label class="small mb-1" for="edit_interestSelector">Interés</label>
-                        <input id="edit_slider" type="range" min="0" max="100" step="25"><b><span id="edit_interestSelector"></span></b></input>
+                        <label class="small mb-1">Interés</label>
+                        <input id="edit_slider" type="range" min="0" max="100" step="25"/><b><span id="edit_interestSelector"></span></b>
                      </div>
                      <br>
                      <div id="edit_cardHeader" class="card mb-4">
@@ -248,7 +245,7 @@
                         </div>
                         <div id="edit_cardBody" class="card-body">
                            <div class="table-responsive">
-                              <table class="table" id="edit_dataTable" width="100%" cellspacing="0">
+                              <table class="table" id="edit_dataTable">
                                  <thead>
                                     <tr>
                                        <th>Canal de contacto</th>
@@ -264,20 +261,19 @@
                         </div>
                      </div>
                      <div class="btns-account form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <a id="edit_btnSaveContact" type="submit" class="btn btn-primary">Guardar</a>
+                        <a id="edit_btnSaveContact" class="btn btn-primary">Guardar</a>
                         <a id="edit_btnGoBack" class="btn btn-primary">Volver</a>
                      </div>
                   </form>
-
-
                   <div class="modal" id="modaledit" data-animation="slideInOutLeft">
                      <div class="modal-dialog">
                         <section class="modal-content">
-                           <p><strong>Agregar canal de contacto</strong></p>
+                           <h6><strong>Agregar canal de contacto</strong></h6>
                            <form id="addContact_edit">
                               <div id="addChannel_edit" class="form-group">
                                  <label class="small mb-1" for="cmbChannel">Canal de contacto</label>                                                
                                  <select required class="form-control py-1" id="cmbChannel_edit">
+                                    <option value="">Seleccione una opcion</option>
                                     <option value="Telefono">Telefono</option>
                                     <option value="Whatsapp">Whatsapp</option>
                                     <option value="Instagram">Instagram</option>
@@ -292,6 +288,7 @@
                               <div id="addPreferences_edit" class="form-group">
                                  <label class="small mb-1" for="cmbPreferences">Preferencias</label>                                                
                                  <select required class="form-control py-1" id="cmbPreferences_edit">
+                                    <option value="">Seleccione una opcion</option>
                                     <option value="Sin preferencia">Sin preferencia</option>
                                     <option value="Canal favorito">Canal favorito</option>
                                     <option value="No molestar">No molestar</option>
@@ -305,21 +302,20 @@
                         </section>
                      </div>
                   </div>
-
-
                   <div class="modal" id="modal1" data-animation="slideInOutLeft">
                      <div class="modal-dialog">
                         <section class="modal-content">
-                           <p><strong>Agregar canal de contacto</strong></p>
+                           <h6><strong>Agregar canal de contacto</strong></h6>
                            <form id="addContact">
                               <div id="addChannel" class="form-group">
                                  <label class="small mb-1" for="cmbChannel">Canal de contacto</label>                                                
                                  <select required class="form-control py-1" id="cmbChannel">
-                                    <option id="" value="Telefono">Telefono</option>
-                                    <option id="" value="Whatsapp">Whatsapp</option>
-                                    <option id="" value="Instagram">Instagram</option>
-                                    <option id="" value="Facebook">Facebook</option>
-                                    <option id="" value="LinkedIn">LinkedIn</option>
+                                    <option value="">Seleccione una opcion</option>
+                                    <option value="Telefono">Telefono</option>
+                                    <option value="Whatsapp">Whatsapp</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="LinkedIn">LinkedIn</option>
                                  </select>
                               </div>
                               <div id="addAccount" class="form-group">
@@ -329,9 +325,10 @@
                               <div id="addPreferences" class="form-group">
                                  <label class="small mb-1" for="cmbPreferences">Preferencias</label>                                                
                                  <select required class="form-control py-1" id="cmbPreferences">
-                                    <option id="" value="Sin preferencia">Sin preferencia</option>
-                                    <option id="" value="Canal favorito">Canal favorito</option>
-                                    <option id="" value="No molestar">No molestar</option>
+                                    <option value="">Seleccione una opcion</option>
+                                    <option value="Sin preferencia">Sin preferencia</option>
+                                    <option value="Canal favorito">Canal favorito</option>
+                                    <option value="No molestar">No molestar</option>
                                  </select>
                               </div>
                               <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
@@ -373,6 +370,5 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
       <script src="scripts/contacts/removeContact.js"></script>
       <script src="scripts/contacts/editContact.js"></script>
-
    </body>
 </html>

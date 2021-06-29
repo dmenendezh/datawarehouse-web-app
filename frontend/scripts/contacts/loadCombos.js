@@ -1,56 +1,56 @@
 loadCompanies();
 loadRegions();
 
-
-
-async function loadCompanies() {  
+async function loadCompanies() {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
-    
+
     const response = await fetch('http://localhost:3000/companies/listCompanies', options)
     const data = await response.json();
 
-    if (response.status === 200) {        
+    if (response.status === 200) {
         const optionCompanies = document.createElement('option');
-        optionCompanies.setAttribute('value',"");
+        optionCompanies.setAttribute('value', "");
         optionCompanies.innerHTML = ``;
         cmbContactCompany.appendChild(optionCompanies);
 
-        for (let i = 0; i < data.quantity; i++) {            
+        for (let i = 0; i < data.quantity; i++) {
             const companyName = data.companies[i].company_name;
             const companyId = data.companies[i].company_id;
 
             const optionCompanies = document.createElement('option');
-            optionCompanies.setAttribute('value',companyId);
+            optionCompanies.setAttribute('value', companyId);
             optionCompanies.innerHTML = `${companyName}`;
-            cmbContactCompany.appendChild(optionCompanies); 
-		}
+            cmbContactCompany.appendChild(optionCompanies);
+        }
     }
 }
 
-async function loadRegions() {  
+async function loadRegions() {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
-    
+
 
     const response = await fetch('http://localhost:3000/regions/listRegion', options)
     const data = await response.json()
     if (response.status === 200) {
         const option = document.createElement('option');
-        option.setAttribute('value',"");
+        option.setAttribute('value', "");
         option.innerHTML = ``;
         contactCmbRegion.appendChild(option);
 
@@ -60,7 +60,7 @@ async function loadRegions() {
             const regionId = data.regions[i].region_id;
 
             const option = document.createElement('option');
-            option.setAttribute('value',regionId);
+            option.setAttribute('value', regionId);
             option.innerHTML = `${regionName}`;
             contactCmbRegion.appendChild(option);
         }
@@ -71,11 +71,12 @@ async function loadRegions() {
 contactCmbRegion.addEventListener('change', async (event) => {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     limpiar(contactCmbCountry);
@@ -89,7 +90,7 @@ contactCmbRegion.addEventListener('change', async (event) => {
         console.log("resultado");
 
         const optionCountry = document.createElement('option');
-        optionCountry.setAttribute('value',"");
+        optionCountry.setAttribute('value', "");
         optionCountry.innerHTML = ``;
         contactCmbCountry.appendChild(optionCountry);
         for (let i = 0; i < dataCountries.quantity; i++) {
@@ -97,7 +98,7 @@ contactCmbRegion.addEventListener('change', async (event) => {
             const countryId = dataCountries.countries[i].country_id;
 
             const optionCountry = document.createElement('option');
-            optionCountry.setAttribute('value',countryId);
+            optionCountry.setAttribute('value', countryId);
             optionCountry.innerHTML = `${countryName}`;
             contactCmbCountry.appendChild(optionCountry);
         }
@@ -108,11 +109,12 @@ contactCmbRegion.addEventListener('change', async (event) => {
 contactCmbCountry.addEventListener('change', async (event) => {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     limpiar(contactCmbCity);
@@ -124,7 +126,7 @@ contactCmbCountry.addEventListener('change', async (event) => {
     const dataCities = await responseCities.json()
     if (responseCities.status === 200) {
         const option = document.createElement('option');
-        option.setAttribute('value',"");
+        option.setAttribute('value', "");
         option.innerHTML = ``;
         contactCmbCity.appendChild(option);
         for (let i = 0; i < dataCities.quantity; i++) {
@@ -132,7 +134,7 @@ contactCmbCountry.addEventListener('change', async (event) => {
             const countryId = dataCities.cities[i].city_id;
 
             const option = document.createElement('option');
-            option.setAttribute('value',countryId);
+            option.setAttribute('value', countryId);
             option.innerHTML = `${countryName}`;
             contactCmbCity.appendChild(option);
         }
@@ -142,6 +144,6 @@ contactCmbCountry.addEventListener('change', async (event) => {
 
 const limpiar = ($select) => {
     for (let i = $select.options.length; i >= 0; i--) {
-      $select.remove(i);
+        $select.remove(i);
     }
 };

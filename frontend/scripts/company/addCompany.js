@@ -8,15 +8,15 @@ for (const el of openEls) {
 }
 
 
-backModalCompany.addEventListener("click", e => {   
+backModalCompany.addEventListener("click", e => {
     document.querySelectorAll("#modal1")[0].classList.remove(isVisible);
 });
 
-$btnCreateCompany.addEventListener("click", e => {   
+$btnCreateCompany.addEventListener("click", e => {
     loadCityCombo();
 });
 
-$btnConfirmModalCompany.addEventListener("click",  async (e) => {   
+$btnConfirmModalCompany.addEventListener("click", async (e) => {
     const companyName = document.getElementById('inputCompanyName');
     const companyAddress = document.getElementById('inputcompanyAddress');
     const companyEmail = document.getElementById('inputcompanyEmail');
@@ -27,18 +27,19 @@ $btnConfirmModalCompany.addEventListener("click",  async (e) => {
         company_address: companyAddress.value,
         company_email: companyEmail.value,
         city_id: companyCity.value
-    }  
-    
+    }
+
     const options = {
         method: 'POST',
         body: JSON.stringify(dataCompany),
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
-    
+
     const response = await fetch('http://localhost:3000/companies/createCompany', options)
     const data = await response.json()
     if (response.status === 201) {
@@ -48,9 +49,9 @@ $btnConfirmModalCompany.addEventListener("click",  async (e) => {
             type: "success",
             timer: 3000,
             showConfirmButton: true
-          }, function(){
-                window.location.href = "companys.html";
-          });
+        }, function() {
+            window.location.href = "companys.html";
+        });
     }
 });
 
@@ -58,32 +59,33 @@ $btnConfirmModalCompany.addEventListener("click",  async (e) => {
 const loadCityCombo = async () => {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
-    
+
     limpiar($cmbcompanyCity);
-    
+
     const endpoint = `http://localhost:3000/regions/listCities`
     const response = await fetch(endpoint, options)
     const dataCities = await response.json()
     if (response.status === 200) {
         console.log("resultado");
-    
+
         const option = document.createElement('option');
-        option.setAttribute('value',"");
+        option.setAttribute('value', "");
         option.innerHTML = ``;
         $cmbcompanyCity.appendChild(option);
-    
+
         for (let i = 0; i < dataCities.quantity; i++) {
             const cityName = dataCities.cities[i].city_name;
             const cityId = dataCities.cities[i].city_id;
-    
+
             const option = document.createElement('option');
-            option.setAttribute('value',cityId);
+            option.setAttribute('value', cityId);
             option.innerHTML = `${cityName}`;
             $cmbcompanyCity.appendChild(option);
         }
@@ -92,6 +94,6 @@ const loadCityCombo = async () => {
 
 const limpiar = ($select) => {
     for (let i = $select.options.length; i >= 0; i--) {
-      $select.remove(i);
+        $select.remove(i);
     }
-  };
+};

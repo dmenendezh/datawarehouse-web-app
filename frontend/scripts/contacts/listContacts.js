@@ -1,13 +1,14 @@
 listAllContacts();
 
-async function listAllContacts() {   
+async function listAllContacts() {
     const options = {
         method: 'GET',
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     const response = await fetch('http://localhost:3000/contacts/listContacts', options)
@@ -15,8 +16,8 @@ async function listAllContacts() {
     if (response.status === 200) {
         for (let i = 0; i < data.quantity; i++) {
             const contactContainer = document.createElement('tr');
-            contactContainer.classList.add("tr_"+i);
-			contactContainer.innerHTML = `            
+            contactContainer.classList.add("tr_" + i);
+            contactContainer.innerHTML = `            
             <tr>
                 <td><input onclick="checkContact(${i})" index=${i} type="checkbox"></td>
                 <td><img id="avatar" src="${generateAvatar(data.contacts[i].contact_name + ";" + data.contacts[i].contact_surname, "white", "#009578")}" class="Avatar"> ${data.contacts[i].contact_name}  ${data.contacts[i].contact_surname}<span class="grid-contact">${data.contacts[i].contact_email}</span></td>
@@ -26,29 +27,30 @@ async function listAllContacts() {
                 <td>${data.contacts[i].contact_interest}% <progress class="contactprogress" id="file" max="100" value="${data.contacts[i].contact_interest}"></progress></td>
                 <td><a onclick="editContact('${data.contacts[i].contact_id}')"><i class="fas fa-edit"></i></a> | <a onclick="removeContact('${data.contacts[i].contact_id}')"><i class="fas fa-trash"></i></a></td>
             </tr>`;
-			$tbody_contacts.appendChild(contactContainer);
-		}
-        $('#dataTable').dataTable( {
-            pageLength : 50 } );
+            $tbody_contacts.appendChild(contactContainer);
+        }
+        $('#dataTable').dataTable({
+            pageLength: 50
+        });
 
         document.querySelectorAll("#dataTable_length")[0].classList.add("hidden");
         document.querySelectorAll("#dataTable_filter")[0].classList.add("hidden");
         document.querySelectorAll("#dataTable_info")[0].classList.add("hidden");
         document.getElementById("btnselects").classList.remove("sorting_asc");
         document.getElementById("btns_actions").classList.remove("sorting");
-        
+
 
     }
 }
 
-function checkContact(index){}
+function checkContact(index) {}
 
 
-function devuelveIniciales(text){ 
-    const separa=text.split(";"); 
-    const iniciales = separa[0].charAt(0) + "" +separa[1].charAt(0) 
+function devuelveIniciales(text) {
+    const separa = text.split(";");
+    const iniciales = separa[0].charAt(0) + "" + separa[1].charAt(0)
     return iniciales;
-} 
+}
 
 function generateAvatar(text, foregroundColor, backgroundColor) {
     const canvas = document.createElement("canvas");

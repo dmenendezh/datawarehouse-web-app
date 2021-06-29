@@ -1,4 +1,4 @@
-btnSaveContact.addEventListener("click",  async (e) => {   
+btnSaveContact.addEventListener("click", async (e) => {
     const name = document.getElementById('inputContactName');
     const surname = document.getElementById('inputContactSurName');
     const charge = document.getElementById('inputCargo');
@@ -10,7 +10,7 @@ btnSaveContact.addEventListener("click",  async (e) => {
     const address = document.getElementById('inputContactAddress');
     const interest = document.getElementById('slider');
     const photo = document.getElementById('photo');
-    
+
     const dataContact = {
         contact_name: name.value,
         contact_surname: surname.value,
@@ -21,21 +21,22 @@ btnSaveContact.addEventListener("click",  async (e) => {
         country_id: country_id.value,
         city_id: city_id.value,
         contact_address: address.value,
-        contact_interest:  interest.value
-        
-    }  
-    
+        contact_interest: interest.value
+
+    }
+
 
     const options = {
         method: 'POST',
         body: JSON.stringify(dataContact),
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
-    
+
     const response = await fetch('http://localhost:3000/contacts/createContact', options)
     const data = await response.json()
     console.log(data);
@@ -46,20 +47,19 @@ btnSaveContact.addEventListener("click",  async (e) => {
             type: "success",
             timer: 3000,
             showConfirmButton: true
-          }, function(){
-                window.location.href = "dashboard.html";
-          });
+        }, function() {
+            window.location.href = "dashboard.html";
+        });
 
-    }else{
+    } else {
         swal({
             title: "Error",
             text: "Ha ocurrido un error. Contactase con el adminstrador",
             type: "error",
             timer: 3000,
             showConfirmButton: true
-          }, function(){
-                window.location.href = "dashboard.html";
-          });
+        }, function() {
+            window.location.href = "dashboard.html";
+        });
     }
 });
-

@@ -48,8 +48,8 @@ const getSearch = async () => {
         }
 
 
-        if (data.quantity <= 5) {//si la cantidad de resultados es menor o igual a 5 elimino la paginacion
-            
+        if (data.quantity <= 5) { //si la cantidad de resultados es menor o igual a 5 elimino la paginacion
+
             document.querySelectorAll("#dataTable_paginate")[0].classList.add("hidden");
 
         } else {
@@ -59,11 +59,11 @@ const getSearch = async () => {
     }
 };
 
-function devuelveIniciales(text){ 
-    const separa=text.split(";"); 
-    const iniciales = separa[0].charAt(0) + "" +separa[1].charAt(0) 
+function devuelveIniciales(text) {
+    const separa = text.split(";");
+    const iniciales = separa[0].charAt(0) + "" + separa[1].charAt(0)
     return iniciales;
-} 
+}
 
 function generateAvatar(text, foregroundColor, backgroundColor) {
     const canvas = document.createElement("canvas");

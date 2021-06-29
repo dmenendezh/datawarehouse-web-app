@@ -7,12 +7,12 @@ const password = document.getElementById('inputPassword');
 const repeatPwd = document.getElementById('inputRepeatPwd');
 
 
-$btnCreate.addEventListener('click', (event) =>{
+$btnCreate.addEventListener('click', (event) => {
     $layoutAuthentication_content.classList.remove('hidden');
     $cardHeader.classList.add('hidden');
 });
 
-$btnRegister.addEventListener('click', (event) =>{
+$btnRegister.addEventListener('click', (event) => {
     event.preventDefault();
     registerUser();
 });
@@ -30,11 +30,12 @@ async function registerUser() {
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
-        headers: {    
+        headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'}
+            'Access-Control-Allow-Headers': '*'
+        }
     }
 
     const response = await fetch('http://localhost:3000/users/register', options)
@@ -47,18 +48,18 @@ async function registerUser() {
             type: "success",
             timer: 3000,
             showConfirmButton: true
-          }, function(){
-                window.location.href = "users.html";
-          });
-    }else{
+        }, function() {
+            window.location.href = "users.html";
+        });
+    } else {
         swal({
             title: "Error",
             text: "Ha ocurrido un error. Contactese con el adminitrador del sistema",
             type: "error",
             timer: 3000,
             showConfirmButton: true
-          }, function(){
-                window.location.href = "users.html";
-          });
+        }, function() {
+            window.location.href = "users.html";
+        });
     }
 }
