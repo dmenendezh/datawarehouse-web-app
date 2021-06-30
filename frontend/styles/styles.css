@@ -10554,6 +10554,8 @@ progress[value]  {
 
   width: 150px;
   height: 10px;
+  border-radius: 4px;
+  border-radius: 4px;
 
 }
 
@@ -10561,18 +10563,33 @@ progress {
   border: none;
   width: 400px;
   height: 60px;
+  border-radius: 4px;
+  border-radius: 4px;
   /*background: crimson;*/
 }
 
+progress[value="0"]::-webkit-progress-value{
+  background: #DDDDDD;
+  border-radius: 4px;
+  border-radius: 4px;
+}
 progress[value="25"]::-webkit-progress-value{
-  background: rgb(92, 163, 235);
+  background: #1CC1F5;
+  border-radius: 4px;
+  border-radius: 4px;
 }
 progress[value="50"]::-webkit-progress-value{
-  background: rgba(240, 240, 30, 0.755);
+  background: #FFC700;
+  border-radius: 4px;
+  border-radius: 4px;
 }
 progress[value="75"]::-webkit-progress-value{
-  background: rgba(228, 170, 63, 0.884);
+  background: #FF6F00;
+  border-radius: 4px;
+  border-radius: 4px;
 }
 progress[value="100"]::-webkit-progress-value{
-  background: rgba(211, 52, 52, 0.843);
+  background: #DE0028;
+  border-radius: 4px;
+  border-radius: 4px;
 }
