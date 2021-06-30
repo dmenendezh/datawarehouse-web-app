@@ -75,7 +75,11 @@
                            <!-- Navbar Search-->
                            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                               <div class="input-group">
-                                 <button id="btnCreateCompany" class="btn btn-primary btn-register"  data-open="modal1" type="button">Agregar compañia</button>
+                                 <input id="searchCompany" class="form-control" type="text" placeholder="Nombre..." aria-label="Search" />
+                                 <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                                 </div>
+                                 <button id="btnCreateCompany" class="btn btn-primary btn-register btn-table"  data-open="modal1" type="button">Agregar compañia</button>
                               </div>
                            </form>
                         </div>
@@ -93,6 +97,8 @@
                                     <th>Editar | Eliminar</th>
                                  </tr>
                               </thead>
+                              <tbody id="tbody_company">
+                              </tbody>
                            </table>
                         </div>
                      </div>
@@ -169,6 +175,7 @@
       <script src="scripts/dom.js"></script>
       <script src="scripts/company/addCompany.js"></script>
       <script src="scripts/company/listAllCompanies.js"></script>
+      <script src="scripts/company/searcher.js"></script>
       <script src="scripts/spinner.js"></script>
       <script src="scripts/users/permissions.js"></script>
       <script src="scripts/company/editCompany.js"></script>

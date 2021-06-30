@@ -23,14 +23,22 @@ async function loginUser() {
         }
     }
 
-    console.log(user);
-
     const response = await fetch('http://localhost:3000/users/login', options)
     const data = await response.json()
     if (response.status === 200) {
         console.log(data);
         saveToken(data);
         window.location.href = 'dashboard.html';
+    }else{
+        swal({
+            title: "Acceso denegado",
+            text: "Usuario o contraseña ingresada son incorrectos.",
+            type: "error",
+            timer: 3000,
+            showConfirmButton: true
+        }, function() {
+            window.location.reload;
+        });
     }
 }
 

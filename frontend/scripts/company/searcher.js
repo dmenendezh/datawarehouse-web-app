@@ -1,6 +1,11 @@
-listAllCompanies();
+searchCompany.addEventListener('keyup', (event) => {
+    getSearch();
+});
 
-async function listAllCompanies() {
+const getSearch = async () => {
+    const value = searchCompany.value;
+
+    event.preventDefault();
     const options = {
         method: 'GET',
         headers: {
@@ -11,9 +16,18 @@ async function listAllCompanies() {
         }
     }
 
-    const response = await fetch('http://localhost:3000/companies/listCompanies', options)
+    let endpoint = `http://localhost:3000/companies/searchCompany/${value}`;
+    if (value == '') {
+        endpoint = `http://localhost:3000/companies/listCompanies`;
+    }
+
+    const response = await fetch(endpoint, options);
     const data = await response.json()
+
     if (response.status === 200) {
+        console.log("resultado");
+        console.log(data);
+        console.log(data.quantity);
         tbody_company.innerHTML = '';
 
         for (let i = 0; i < data.quantity; i++) {
@@ -34,6 +48,5 @@ async function listAllCompanies() {
             tbody_company.appendChild(companyContainer);
         }
 
-
     }
-}
+};

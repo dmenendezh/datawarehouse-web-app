@@ -417,9 +417,6 @@ legend {
   white-space: normal;
 }
 
-progress {
-  vertical-align: baseline;
-}
 
 [type=number]::-webkit-inner-spin-button,
 [type=number]::-webkit-outer-spin-button {
@@ -5030,66 +5027,6 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 .alert-dark .alert-link {
   color: #040505;
-}
-
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    background-position: 1rem 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
-@keyframes progress-bar-stripes {
-  from {
-    background-position: 1rem 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-.progress {
-  display: flex;
-  height: 1rem;
-  overflow: hidden;
-  line-height: 0;
-  font-size: 0.75rem;
-  background-color: #e9ecef;
-  border-radius: 0.25rem;
-}
-
-.progress-bar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  background-color: #007bff;
-  transition: width 0.6s ease;
-}
-@media (prefers-reduced-motion: reduce) {
-  .progress-bar {
-    transition: none;
-  }
-}
-
-.progress-bar-striped {
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-size: 1rem 1rem;
-}
-
-.progress-bar-animated {
-  -webkit-animation: progress-bar-stripes 1s linear infinite;
-          animation: progress-bar-stripes 1s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .progress-bar-animated {
-    -webkit-animation: none;
-            animation: none;
-  }
 }
 
 .media {
@@ -10573,17 +10510,6 @@ to {
   color: grey;
 }
 
-progress[value]  {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border: none;
-  width: 90px;
-  height: 10px;
-  color: blue;  
-  border-radius: 10px;
-}
-
 .avatarImage {
   vertical-align: middle;
   width: 30px;
@@ -10614,6 +10540,39 @@ progress[value]  {
   margin-top: 8px;
 }
 
-#btnCreateCompany{
-  margin-left: 0px;
+
+.btn-table{
+  margin-left: 74rem;
+}
+
+progress[value]  {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+
+  border: none;                       /* Remove border from Firefox */
+
+  width: 150px;
+  height: 10px;
+
+}
+
+progress {
+  border: none;
+  width: 400px;
+  height: 60px;
+  /*background: crimson;*/
+}
+
+progress[value="25"]::-webkit-progress-value{
+  background: rgb(92, 163, 235);
+}
+progress[value="50"]::-webkit-progress-value{
+  background: rgba(240, 240, 30, 0.755);
+}
+progress[value="75"]::-webkit-progress-value{
+  background: rgba(228, 170, 63, 0.884);
+}
+progress[value="100"]::-webkit-progress-value{
+  background: rgba(211, 52, 52, 0.843);
 }

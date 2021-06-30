@@ -36,7 +36,8 @@ async function listAllContacts() {
             $tbody_contacts.appendChild(contactContainer);
         }
         $('#dataTable').dataTable({
-            pageLength: 50
+            pageLength: 50,
+            "order": [ 5, 'desc' ]
         });
 
         document.querySelectorAll("#dataTable_length")[0].classList.add("hidden");
@@ -45,6 +46,8 @@ async function listAllContacts() {
         document.getElementById("btnselects").classList.remove("sorting_asc");
         document.getElementById("btns_actions").classList.remove("sorting");
 
+        var progress = document.getElementById('file');
+        progress.style.background = 'red';
 
     }else if(response.status === 403){
         window.location.href = "index.html";

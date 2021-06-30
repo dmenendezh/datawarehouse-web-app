@@ -52,6 +52,9 @@ server.use('/companies/listCompanies', require('../backend/routes/companys/listC
 server.use('/companies/listCompanyById', require('../backend/routes/companys/listCompanyById'));
 server.use('/companies/editCompany', require('../backend/routes/companys/editCompany'));
 server.use('/companies/removeCompany', require('../backend/routes/companys/removeCompany'));
+server.use('/companies/searchCompany', require('../backend/routes/companys/searchCompany'));
+
+
 
 //contacts
 server.use('/contacts/createContact', require('../backend/routes/contacts/addContact'));
