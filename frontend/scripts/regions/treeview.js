@@ -527,7 +527,7 @@ $btnConfirm.addEventListener('click', async (event) => {
         console.log(data);
         if (response.status === 201) {
             swal({
-                title: "Región creada existosamente",
+                title: "Ciudad creada existosamente",
                 text: "",
                 type: "success",
                 timer: 3000,
@@ -714,64 +714,129 @@ async function fncDelete() {
         if (CHILDRENS_NODE > 0) {
             alert("La region no puede ser eliminada, tiene dependencias asociadas");
         } else {
-            const options = {
-                method: 'DELETE',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': '*'
-                }
-            }
 
-            const endpoint = `http://localhost:3000/regions/deleteRegion/${SEL}`
-            const response = await fetch(endpoint, options)
-            const DEL_CONTACTS = await response.json()
-            if (response.status === 201) {
-                window.location.href = 'regions.html';
-            }
+            swal({
+                title: "¿Está seguro?",
+                text: "La región será eliminada del sistema",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Si, eliminarla!",
+                closeOnConfirm: false
+              },
+              async function(){
+                const options = {
+                    method: 'DELETE',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': '*'
+                    }
+                }
+    
+                const endpoint = `http://localhost:3000/regions/deleteRegion/${SEL}`
+                const response = await fetch(endpoint, options)
+                const DEL_CONTACTS = await response.json()
+                if (response.status === 201) {
+                    swal({
+                        title: "Region eliminada existosamente",
+                        text: "",
+                        type: "success",
+                        timer: 3000,
+                        showConfirmButton: true
+                    }, function() {
+                        window.location.href = 'regions.html';
+                    });
+                }
+    
+              });
         }
     } else if (TYPE == 'country') {
         if (CHILDRENS_NODE > 0) {
             alert("El país no puede ser eliminado, tiene dependencias asociadas");
         } else {
-            const options = {
-                method: 'DELETE',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': '*'
-                }
-            }
 
-            const endpoint = `http://localhost:3000/regions/deleteCountry/${SEL}`
-            const response = await fetch(endpoint, options)
-            const DEL_CONTACTS = await response.json()
-            if (response.status === 201) {
-                window.location.href = 'regions.html';
-            }
+            swal({
+                title: "¿Está seguro?",
+                text: "El país será eliminado del sistema",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Si, eliminarlo!",
+                closeOnConfirm: false
+              },
+              async function(){
+                const options = {
+                    method: 'DELETE',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': '*'
+                    }
+                }
+    
+                const endpoint = `http://localhost:3000/regions/deleteCountry/${SEL}`
+                const response = await fetch(endpoint, options)
+                const DEL_CONTACTS = await response.json()
+                if (response.status === 201) {
+                    swal({
+                        title: "Pais eliminado existosamente",
+                        text: "",
+                        type: "success",
+                        timer: 3000,
+                        showConfirmButton: true
+                    }, function() {
+                        window.location.href = 'regions.html';
+                    });
+                }
+    
+              });
         }
     } else if (TYPE == 'city') {
         if (CHILDRENS_NODE > 0) {
             alert("La ciudad no puede ser eliminado, tiene dependencias asociadas");
         } else {
-            const options = {
-                method: 'DELETE',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': '*'
-                }
-            }
 
-            const endpoint = `http://localhost:3000/regions/deleteCity/${SEL}`
-            const response = await fetch(endpoint, options)
-            const DEL_CONTACTS = await response.json()
-            if (response.status === 201) {
-                window.location.href = 'regions.html';
-            }
+            swal({
+                title: "¿Está seguro?",
+                text: "La ciudad será eliminada del sistema",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Si, eliminarla!",
+                closeOnConfirm: false
+              },
+              async function(){
+                const options = {
+                    method: 'DELETE',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': '*'
+                    }
+                }
+    
+                const endpoint = `http://localhost:3000/regions/deleteCity/${SEL}`
+                const response = await fetch(endpoint, options)
+                const DEL_CONTACTS = await response.json()
+                if (response.status === 201) {
+                    swal({
+                        title: "Ciudad eliminada existosamente",
+                        text: "",
+                        type: "success",
+                        timer: 3000,
+                        showConfirmButton: true
+                    }, function() {
+                        window.location.href = 'regions.html';
+                    });
+    
+                    
+                }
+
+              });
         }
     } else {
         alert("Debe seleccionar un elemento del arbol jerarquico (Region / Pais / Ciudad)");

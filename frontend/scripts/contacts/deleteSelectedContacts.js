@@ -37,28 +37,41 @@ $(document).on('change', 'input[type="checkbox"]', function(e) {
 });
 
 async function removeUsersSelected() {
-    for (let i = 0; i < SELECTED_CONTACTS.length; i++) {
-        let index = SELECTED_CONTACTS[i];
-        const EMAIL_USER = document.querySelectorAll(".tr_" + index)[0].childNodes[3].children[1].innerText;
-
-        const options = {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*'
+    swal({
+        title: "¿Está seguro?",
+        text: "El usuario será eliminado del sistema",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Si, eliminarlo!",
+        closeOnConfirm: false
+      },
+      async function(){
+        for (let i = 0; i < SELECTED_CONTACTS.length; i++) {
+            let index = SELECTED_CONTACTS[i];
+            const EMAIL_USER = document.querySelectorAll(".tr_" + index)[0].childNodes[3].children[1].innerText;
+    
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*'
+                }
+            }
+    
+            const endpoint = `http://localhost:3000/contacts/deleteSelectedContacts/${EMAIL_USER}`
+            const response = await fetch(endpoint, options)
+            const DEL_CONTACTS = await response.json()
+            if (response.status === 200) {
+                console.log("resultado");
+                console.log(DEL_CONTACTS);
             }
         }
+      });
 
-        const endpoint = `http://localhost:3000/contacts/deleteSelectedContacts/${EMAIL_USER}`
-        const response = await fetch(endpoint, options)
-        const DEL_CONTACTS = await response.json()
-        if (response.status === 200) {
-            console.log("resultado");
-            console.log(DEL_CONTACTS);
-        }
-    }
+
     window.location.href = 'dashboard.html';
 
 }
