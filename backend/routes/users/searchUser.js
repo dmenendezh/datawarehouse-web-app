@@ -1,13 +1,14 @@
 const { Router } = require('express');
 const router = Router();
 const Users = require('../../models/Usuarios');
-/*const mdGlobal = require('../../middlewares/mdGlobal');
-const mdUsers = require('../../middlewares/mdUsers');*/
+const Autentication = require('../../middlewares/Autentication');
+const mdUsers = require('../../middlewares/Users');
+
 const cors = require('cors');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-router.get('/:nombre',  /*mdGlobal.validateToken, mdUsers.userRol,*/ async (req, res) => {
+router.get('/:nombre',  Autentication.validateToken, mdUsers.userRol, async (req, res) => {
     const nomb = req.params.nombre;
     let usr = '';
     if(nomb == ''){

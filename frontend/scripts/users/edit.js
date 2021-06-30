@@ -8,6 +8,9 @@ $btnEditUser.addEventListener('click', async (event) => {
         usr_admin_flag: cmbEditPerfil.value,
         usr_password: inputEditPassword.value
     }
+
+    let token = sessionStorage.getItem('Tokenizer');
+
     const options = {
         method: 'PUT',
         body: JSON.stringify(dataUser),
@@ -15,7 +18,8 @@ $btnEditUser.addEventListener('click', async (event) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'
+            'Access-Control-Allow-Headers': '*',
+            'Authorization': token
         }
     }
 
@@ -24,6 +28,17 @@ $btnEditUser.addEventListener('click', async (event) => {
     const data = await response.json();
     if (response.status === 201) {
         window.location.href = 'users.html';
+    }else if (response.status === 403) {
+        swal({
+            title: "Error",
+            text: "No tiene los permisos necesarios para realizar esta acción",
+            type: "error",
+            timer: 5000,
+            showConfirmButton: true
+        }, function() {
+            window.location.href = "index.html";
+        });
+
     }
 });
 
@@ -31,14 +46,17 @@ async function editUser(usuario) {
     layoutEdit_Users.classList.remove('hidden');
     $cardHeader.classList.add('hidden');
 
-    console.log('editando: ' + usuario);
+    let token = sessionStorage.getItem('Tokenizer');
+
     const options = {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'
+            'Access-Control-Allow-Headers': '*',
+            'Authorization': token
+
         }
     }
 

@@ -36,6 +36,9 @@ async function loginUser() {
 
 
 function saveToken(data) {
+    console.log(data)
+    console.log(JSON.stringify(data))
+
     sessionStorage.setItem('Token', JSON.stringify(data))
-    sessionStorage.setItem('Prueba', "VAL DE PRUEBA")
+    sessionStorage.setItem('Tokenizer', data.token)
 }

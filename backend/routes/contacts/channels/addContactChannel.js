@@ -1,12 +1,9 @@
 const { Router } = require('express');
 const router = Router();
-/*const mdGlobal = require('../../middlewares/mdGlobal');
-const mdUsers = require('../../middlewares/mdUsers');
-const mdProducts = require('../../middlewares/mdProducts');*/
 const cors = require('cors')
 const db = require("../../../database/dbConnector");
 
-router.post('/', /*mdGlobal.validateToken, mdGlobal.checkEmptyBody, mdUsers.userRol, mdProducts.checkDataSended,*/ async (req, res) => {
+router.post('/', async (req, res) => {
     const contactChannelData = req.body;
     console.log(contactChannelData)
     

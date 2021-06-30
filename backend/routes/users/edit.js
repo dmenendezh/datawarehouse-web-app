@@ -1,9 +1,13 @@
 const { Router } = require('express');
 const router = Router();
 const Users = require('../../models/Usuarios');
+const Autentication = require('../../middlewares/Autentication');
+const mdUsers = require('../../middlewares/Users');
+
 const cors = require('cors')
 
-router.put('/:usrLogin',/* mdGlobal.validateToken, mdGlobal.checkEmptyBody, mdUsers.userRol,*/ async (req, res) => {
+router.put('/:usrLogin', Autentication.validateToken, mdUsers.userRol, async (req, res) => {
+    
     const usr_login = req.body.usr_login;
     const usr_name = req.body.usr_name;
     const usr_surname = req.body.usr_surname;

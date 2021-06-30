@@ -1,18 +1,24 @@
 listAllContacts();
 
 async function listAllContacts() {
+
+    let token = sessionStorage.getItem('Tokenizer');
+
+
     const options = {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'
+            'Access-Control-Allow-Headers': '*',
+            'Authorization': token
         }
     }
 
     const response = await fetch('http://localhost:3000/contacts/listContacts', options)
     const data = await response.json()
+
     if (response.status === 200) {
         for (let i = 0; i < data.quantity; i++) {
             const contactContainer = document.createElement('tr');
@@ -40,6 +46,8 @@ async function listAllContacts() {
         document.getElementById("btns_actions").classList.remove("sorting");
 
 
+    }else if(response.status === 403){
+        window.location.href = "index.html";
     }
 }
 

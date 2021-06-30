@@ -3,8 +3,9 @@ const router = Router();
 const Contact = require('../../models/Contact');
 const cors = require('cors');
 const db = require("../../database/dbConnector");
+const Autentication = require('../../middlewares/Autentication');
 
-router.get('/', async (req, res) => { 
+router.get('/', Autentication.validateToken, async (req, res) => { 
     try{
         const contacts = await db.query("select c1.*, country_name, city_name, company_name from contacts c1, countries c2, cities c3, companies c4 where c1.country_id = c2.country_id and c1.city_id = c3.city_id and c1.company_id = c4.company_id order by c1.contact_id asc", { type: db.QueryTypes.SELECT });
         res.status(200).json({

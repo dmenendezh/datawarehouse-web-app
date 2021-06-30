@@ -6,13 +6,18 @@ const getSearch = async () => {
     const value = $userSearcher.value;
 
     event.preventDefault();
+
+    let token = sessionStorage.getItem('Tokenizer');
+
     const options = {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'
+            'Access-Control-Allow-Headers': '*',
+            'Authorization': token
+
         }
     }
 
@@ -48,7 +53,6 @@ const getSearch = async () => {
 
             const usrContainer = document.createElement('tbody');
 
-            const endpointRemoveUser = `http://localhost:3000/users/removeUser/${data.usr[i].usr_login}`
             usrContainer.innerHTML = `            
             <tr>
                 <td>${data.usr[i].usr_login}</td>
@@ -61,5 +65,16 @@ const getSearch = async () => {
 			`;
             $dataTable.appendChild(usrContainer);
         }
+    }else if (response.status === 403) {
+        swal({
+            title: "Error",
+            text: "No tiene los permisos necesarios para realizar esta acción",
+            type: "error",
+            timer: 5000,
+            showConfirmButton: true
+        }, function() {
+            window.location.href = "index.html";
+        });
+
     }
 };

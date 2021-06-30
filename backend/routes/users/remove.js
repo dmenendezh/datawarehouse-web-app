@@ -2,9 +2,11 @@ const { Router } = require('express');
 const router = Router();
 const Users = require('../../models/Usuarios');
 const db = require("../../database/dbConnector");
+const Autentication = require('../../middlewares/Autentication');
+const mdUsers = require('../../middlewares/Users');
 const cors = require('cors')
 
-router.delete('/:usrLogin', /*mdGlobal.validateToken, mdUsers.userRol,*/ async (req, res) => {
+router.delete('/:usrLogin', Autentication.validateToken, mdUsers.userRol, async (req, res) => {
     try{
         console.log("user a borrar= " + req.params.usrLogin);
 

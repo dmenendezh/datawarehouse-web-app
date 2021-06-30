@@ -1,6 +1,7 @@
 listallUsers();
 
 async function listallUsers() {
+    let token = sessionStorage.getItem('Tokenizer');
 
     const options = {
         method: 'GET',
@@ -8,7 +9,9 @@ async function listallUsers() {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*'
+            'Access-Control-Allow-Headers': '*',
+            'Authorization': token
+
         }
     }
 
@@ -46,5 +49,17 @@ async function listallUsers() {
         }
 
 
+    }else if (response.status === 403) {
+        swal({
+            title: "Error",
+            text: "No tiene los permisos necesarios para realizar esta acción",
+            type: "error",
+            timer: 5000,
+            showConfirmButton: true
+        }, function() {
+            window.location.href = "index.html";
+        });
+
     }
+
 }

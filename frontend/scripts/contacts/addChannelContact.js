@@ -60,7 +60,6 @@ btnSaveContact.addEventListener("click", async (e) => {
             contact_email: EMAIL
         }
 
-
         const options = {
             method: 'POST',
             body: JSON.stringify(dataChannelContact),
@@ -68,7 +67,7 @@ btnSaveContact.addEventListener("click", async (e) => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*'
+                'Access-Control-Allow-Headers': '*',
             }
         }
 
@@ -83,3 +82,21 @@ btnSaveContact.addEventListener("click", async (e) => {
     }
 
 });
+
+function parseJwt(token) {
+    try {
+        const base64HeaderUrl = token.split(',')[1];
+        const base64Header = base64HeaderUrl.replace('-', '+').replace('_', '/');
+  
+        let tw = base64Header.split(':')[1];
+        tw = tw.slice(1, tw.length)
+        tw = tw.slice(0, tw.length - 2)
+  
+        const token_part = tw.split('.')[1];
+        const headerData = JSON.parse(window.atob(token_part));
+        return headerData;
+  
+    } catch (err) {
+        return false;
+    }
+}

@@ -1,11 +1,11 @@
 const { Router } = require('express');
 const router = Router();
 const Users = require('../../models/Usuarios');
-/*const mdGlobal = require('../../middlewares/mdGlobal');
-const mdUsers = require('../../middlewares/mdUsers');*/
+const Autentication = require('../../middlewares/Autentication');
+const mdUsers = require('../../middlewares/Users');
 const cors = require('cors')
 
-router.get('/',  /*mdGlobal.validateToken, mdUsers.userRol,*/ async (req, res) => {
+router.get('/', Autentication.validateToken, mdUsers.userRol, async (req, res) => {
     const usr = await Users.usersModel.findAll({ where: {}})
     .catch(err => throwException(err, res));
 

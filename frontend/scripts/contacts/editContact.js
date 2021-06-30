@@ -76,7 +76,6 @@ async function editContact(contactId) {
 }
 
 
-
 async function loadContactChannells(contactId) {
     const options = {
         method: 'GET',
@@ -113,16 +112,14 @@ async function loadContactChannells(contactId) {
         }
     }
 
-    $('#edit_dataTable').dataTable({
+    /*$('#edit_dataTable').dataTable({
         pageLength: 50,
         "ordering": false
     });
-
     document.getElementById("edit_dataTable_length").setAttribute("hidden", "true");
     document.getElementById("edit_dataTable_filter").setAttribute("hidden", "true");
     document.getElementById("edit_dataTable_info").setAttribute("hidden", "true");
-    document.getElementById("edit_dataTable_paginate").setAttribute("hidden", "true");
-
+    document.getElementById("edit_dataTable_paginate").setAttribute("hidden", "true");*/
 }
 
 
@@ -425,6 +422,11 @@ $('#edit_dataTable tbody').on('click', 'tr > td', function(e) {
         table.row(`:eq(${index})`).remove().draw();
 
     }
+
+    document.getElementById("edit_dataTable_length").setAttribute("hidden", "true");
+    document.getElementById("edit_dataTable_filter").setAttribute("hidden", "true");
+    document.getElementById("edit_dataTable_info").setAttribute("hidden", "true");
+    document.getElementById("edit_dataTable_paginate").setAttribute("hidden", "true");
 });
 
 
