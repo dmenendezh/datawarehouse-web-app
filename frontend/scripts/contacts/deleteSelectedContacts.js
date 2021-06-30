@@ -11,12 +11,28 @@ $(document).on('change', 'input[type="checkbox"]', function(e) {
         document.querySelectorAll(".tr_" + index)[0].classList.remove("selectRowTable");
         SELECTED_CONTACTS.splice(index);
     }
-    console.log(SELECTED_CONTACTS.length);
-    if (SELECTED_CONTACTS.length >= 2) {
+
+
+    let cont = 0;
+    jQuery("td").each( //selecciono las td con id que comience por "columna_"
+    function(){ 
+        checks = $(this).find(':checkbox').length  //por cada una de las columnas busco los checkboxs q tienen dentro
+        if(checks == 1){
+            if($(this).find(':checkbox')[0].checked){
+                cont++;
+            }
+        }
+    });
+
+    if (cont >= 2) {
         document.querySelectorAll(".remove-selected-users")[0].classList.remove("hidden");
     } else {
         document.querySelectorAll(".remove-selected-users")[0].classList.add("hidden");
     }
+
+  
+
+    document.getElementById("txtCountContacts").innerHTML = "Contactos seleccionados: "+ cont; 
 
 });
 

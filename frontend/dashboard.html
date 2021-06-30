@@ -81,7 +81,15 @@
                            </form>
                         </div>
                      </div>
+
+                     <!--<div class="input-group-append">
+                        <h6 id="txtCantContacts">Contactos seleccionados: </h6> 
+                        <input id="txtCountContacts" type="text" readonly/>
+                     </div>-->
+  
                      <a class="remove-selected-users hidden" onclick="removeUsersSelected('${data.contacts[i].company_id}')"><i class="fas fa-trash"></i> Eliminar contactos</a>
+                     <a class="remove-selected-users" id="txtCountContacts"></a>
+
                      <div id="cardBody" class="card-body">
                         <div class="table-responsive">
                            <table class="table table-bordered" id="dataTable">
