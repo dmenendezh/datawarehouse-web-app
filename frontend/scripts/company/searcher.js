@@ -41,6 +41,7 @@ const getSearch = async () => {
                 <td>${data.companies[i].city_name}</td>
                 <td>${data.companies[i].company_address}</td>
                 <td>${data.companies[i].company_email}</td>
+                <td>${data.companies[i].company_phone}</td>
                 <td><a onclick="editCompany('${data.companies[i].company_id}')"><i class="fas fa-edit"></i></a> | <a onclick="removeCompany('${data.companies[i].company_id}')"><i class="fas fa-trash"></i></a></td>
 
             </tr>

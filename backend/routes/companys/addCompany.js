@@ -1,15 +1,10 @@
 const { Router } = require('express');
 const router = Router();
 const Company = require('../../models/Companies');
-/*const mdGlobal = require('../../middlewares/mdGlobal');
-const mdUsers = require('../../middlewares/mdUsers');
-const mdProducts = require('../../middlewares/mdProducts');*/
 const cors = require('cors')
 
-router.post('/', /*mdGlobal.validateToken, mdGlobal.checkEmptyBody, mdUsers.userRol, mdProducts.checkDataSended,*/ async (req, res) => {
-    const companyData = req.body;
-    console.log(companyData)
-    
+router.post('/', async (req, res) => {
+    const companyData = req.body;    
     const newCompany = await Company.companyModel.create(companyData)
     .catch(err => {
         console.log('Unable to create Company.' + err.message);

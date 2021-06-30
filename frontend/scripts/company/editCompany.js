@@ -23,12 +23,15 @@ async function editCompany(companyId) {
         console.log(data.company[0].company_address);
         console.log(data.company[0].company_email);
         console.log(data.company[0].city_id);
+        console.log(data.company[0].company_phone);
 
+        
 
         document.getElementById("hiddenIdCompany").setAttribute("value", data.company[0].company_id);
         document.getElementById("inputEditNombre").setAttribute("value", data.company[0].company_name)
         document.getElementById("inputEditDireccion").setAttribute("value", data.company[0].company_address)
         document.getElementById("inputEditMail").setAttribute("value", data.company[0].company_email)
+        document.getElementById("inputEditTelephone").setAttribute("value", data.company[0].company_phone)
 
 
         const options3 = {
@@ -104,9 +107,11 @@ btnEditCompany.addEventListener("click", async (event) => {
         company_name: inputEditNombre.value,
         company_address: inputEditDireccion.value,
         company_email: inputEditMail.value,
-        city_id: cmbEditCiudad.value
+        city_id: cmbEditCiudad.value,
+        company_phone: inputEditTelephone.value
     }
 
+    console.log(dataUser);
     const options = {
         method: 'PUT',
         body: JSON.stringify(dataUser),

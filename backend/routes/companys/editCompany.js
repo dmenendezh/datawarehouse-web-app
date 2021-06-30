@@ -3,20 +3,26 @@ const router = Router();
 const Company = require('../../models/Companies');
 const cors = require('cors')
 
-router.put('/:companyId', /*mdGlobal.validateToken, mdGlobal.checkEmptyBody, mdUsers.userRol,*/ async (req, res) => {
+router.put('/:companyId', async (req, res) => {
     const new_companyName = req.body.company_name;
     const new_companyAddress = req.body.company_address;
     const new_companyEmail = req.body.company_email;
     const new_companyCityId = req.body.city_id;
+    const new_companyPhone = req.body.company_phone;
+
+    
 
     console.log("new_companyName: " + new_companyName);
     console.log("new_companyAddress: " + new_companyAddress);
     console.log("new_companyEmail: " + new_companyEmail);
     console.log("new_companyCityId: " + new_companyCityId);
+    console.log("new_companyPhone: " + new_companyPhone);
+
+    
     console.log("companyId: " + req.params.companyId);
 
     const rst = await Company.companyModel
-    .update({ company_name: new_companyName, company_address: new_companyAddress, company_email: new_companyEmail, city_id: new_companyCityId  }, { where: { company_id: req.params.companyId } })
+    .update({ company_name: new_companyName, company_address: new_companyAddress, company_email: new_companyEmail, city_id: new_companyCityId, company_phone: new_companyPhone }, { where: { company_id: req.params.companyId } })
     .catch(err => throwException(err, res));
 
     res.status(201).json({

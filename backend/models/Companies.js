@@ -21,6 +21,10 @@ const companyModel = sequelize.define('companies', {
         type: DataTypes.STRING,
         allowNull:false
     },
+    company_phone: {
+        type: DataTypes.STRING,
+        allowNull:false
+    },
     city_id: {
         type: DataTypes.INTEGER,
         references: {

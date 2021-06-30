@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `dw_webapp`.`companies` (
   `company_address` VARCHAR(255) NOT NULL,
   `company_email` VARCHAR(255) NOT NULL,
   `city_id` INT NOT NULL,
+  `company_phone` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`company_id`),
   INDEX `fk_company_idx` (`company_id` ASC),
   CONSTRAINT `fk_city`

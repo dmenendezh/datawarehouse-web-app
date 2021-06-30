@@ -26,7 +26,8 @@ $btnConfirmModalCompany.addEventListener("click", async (e) => {
         company_name: companyName.value,
         company_address: companyAddress.value,
         company_email: companyEmail.value,
-        city_id: companyCity.value
+        city_id: companyCity.value,
+        company_phone: inputTelephone.value
     }
 
     const options = {
