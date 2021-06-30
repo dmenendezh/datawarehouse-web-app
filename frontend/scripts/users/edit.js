@@ -27,7 +27,15 @@ $btnEditUser.addEventListener('click', async (event) => {
     const response = await fetch(endpoint, options)
     const data = await response.json();
     if (response.status === 201) {
-        window.location.href = 'users.html';
+        swal({
+            title: "Usuario modificado existosamente",
+            text: "",
+            type: "success",
+            timer: 3000,
+            showConfirmButton: true
+        }, function() {
+            window.location.href = "users.html";
+        });
     }else if (response.status === 403) {
         swal({
             title: "Error",

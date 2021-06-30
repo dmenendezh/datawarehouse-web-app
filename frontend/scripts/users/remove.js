@@ -28,7 +28,15 @@ async function removeUser (usuario) {
         const response = await fetch(endpoint, options)
         const DEL_CONTACTS = await response.json()
         if (response.status === 201) {
-            window.location.href = 'users.html';
+            swal({
+                title: "Usuario eliminado existosamente",
+                text: "",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: true
+            }, function() {
+                window.location.href = "users.html";
+            });        
         }else if (response.status === 403) {
             swal({
                 title: "Error",
