@@ -69,9 +69,10 @@ async function removeUsersSelected() {
                 console.log(DEL_CONTACTS);
             }
         }
+        window.location.href = 'dashboard.html';
+
       });
 
 
-    window.location.href = 'dashboard.html';
 
 }

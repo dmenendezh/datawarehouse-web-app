@@ -627,9 +627,14 @@ async function fncCreateCity() {
 
     const response = await fetch('http://localhost:3000/regions/listRegion', options)
     const data = await response.json()
+
+    let regionName_2 ="";
     if (response.status === 200) {
         console.log("resultado");
         for (let i = 0; i < data.quantity; i++) {
+            if(i == 0){
+                regionName_2 = data.regions[i].region_name;
+            }
             console.log(data.regions[i].region_name);
             const regionName = data.regions[i].region_name;
             const regionId = data.regions[i].region_id;
@@ -640,6 +645,35 @@ async function fncCreateCity() {
             $cmbRegions.appendChild(option);
         }
     }
+
+
+
+    const options_2 = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*'
+        }
+    }
+
+    const response_2 = await fetch(`http://localhost:3000/regions/listCountryByRegion/${regionName_2}`, options)
+    const data_2 = await response_2.json()
+    if (response_2.status === 200) {
+        console.log("resultado");
+        for (let i = 0; i < data_2.quantity; i++) {
+            console.log(data_2.countries[i].country_name);
+            const countryName = data_2.countries[i].country_name;
+            const countryId = data_2.countries[i].country_id;
+
+            const option = document.createElement('option');
+            option.setAttribute('value', countryId);
+            option.innerHTML = `${countryName}`;
+            $cmbCountrys.appendChild(option);
+        }
+    }
+
 };
 
 function fncEdit() {

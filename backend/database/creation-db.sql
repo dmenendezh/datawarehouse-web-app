@@ -111,3 +111,7 @@ CREATE TABLE IF NOT EXISTS `dw_webapp`.`channels` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+USE `dw_webapp`;
+
+insert into users values(1,'admin','Administrador','','admin','admin@datawarehouse.com',1);
