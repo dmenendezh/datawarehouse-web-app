@@ -5,6 +5,7 @@ const server = express();
 const bodyParser = require("body-parser");
 const compression = require('compression');
 
+
 //3. agregar middlewares globales
 server.use(express.json()); // parsear el body a un objeto
 const cors = require('cors')
@@ -13,6 +14,7 @@ server.use(bodyParser.json({limit: '50mb'}));
 server.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 server.use(express.json());
 server.use(bodyParser.json());
+var multer = require('multer')
 
 /* RUTAS */
 //login and register
@@ -69,19 +71,20 @@ server.use('/contacts/listContactById', require('../backend/routes/contacts/list
 server.use('/contacts/listChannellsByContact', require('../backend/routes/contacts/channels/listChannellsByContact'));
 server.use('/contacts/channels/removeContactChannels', require('../backend/routes/contacts/channels/removeContactChannels'));
 
-//contacts/editContact
-
-
 
 
 server.post("/uploadPhoto", function(req, res) {
-    console.log("Llego uploadPhoto!");
-    const uploadPhoto = req.body;
-    console.log(req.body)
+  upload(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+          console.log(err)
+          return res.status(500).json(err)
+      } else if (err) {
+           console.log(err)
 
-    res.status(201).json({
-        message: 'uploadPhoto sacessfull!'
-    });
+          return res.status(500).json(err)
+      }
+    return res.status(200).send(req.file)
+  })
 });
 
 server.use(cors());

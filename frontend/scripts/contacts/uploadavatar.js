@@ -21,12 +21,32 @@ $(document).ready(function() {
     });
 });
 
+document.querySelector('#photoUpload').addEventListener('change', event => {
+    subirImagen(event);
+});
+
 const slider = document.getElementById("slider");
 const output = document.getElementById("interestValue");
 output.innerHTML = slider.value;
 
 slider.oninput = function() {
     output.innerHTML = this.value;
+}
+
+const subirImagen= event => {
+    const archivo = event.target.files;
+    const data = new FormData();
+  
+    data.append('archivo', archivo[0]);
+  
+    fetch('http://localhost:3000/uploadPhoto', {
+      method: 'POST',
+      body: data
+    })
+    .then(response => response.json())
+    .catch(error => {
+      console.error(error);
+    });
 }
 
 
@@ -49,11 +69,22 @@ async function createImage(event) {
     console.log(myBlob)
     formData.append('myBlob', myBlob, file.name)
 
+  
+    var reader = new FileReader();
+    let base64 = "";
+    reader.readAsDataURL(myBlob);
+    reader.onloadend = function () {
+        var base64String = reader.result;
+        console.log('Base64 String without Tags- ', base64String.substr(base64String.indexOf(', ') + 1));
+        base64 = base64String.substr(base64String.indexOf(', ') + 1);
+    }
+
     const options = {
         method: 'POST',
-        body: formData,
+        body: base64,
         headers: {
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': '*'
         }
@@ -66,6 +97,7 @@ async function createImage(event) {
     if (response.status === 201) {
         console.log("Sucess!")
     }
+
 
 
 

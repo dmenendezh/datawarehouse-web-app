@@ -86,7 +86,6 @@
                         <h6 id="txtCantContacts">Contactos seleccionados: </h6> 
                         <input id="txtCountContacts" type="text" readonly/>
                      </div>-->
-  
                      <a class="remove-selected-users hidden" onclick="removeUsersSelected('${data.contacts[i].company_id}')"><i class="fas fa-trash"></i> Eliminar contactos</a>
                      <a class="remove-selected-users" id="txtCountContacts"></a>
 
@@ -117,7 +116,7 @@
                            <div class="upload-button">
                               <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                            </div>
-                           <input id="photoUpload" onchange="createImage(event)" class="file-upload" type="file" accept="image/*"/>
+                           <input id="photoUpload" class="file-upload" type="file" accept="image/*"/>
                         </div>
                         <div class="containerform">
                            <div class="group-account div-name">
@@ -199,7 +198,7 @@
                            <div class="upload-button">
                               <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                            </div>
-                           <input id="edit_photoUpload" onchange="createImage(event)" class="file-upload" type="file" accept="image/*"/>
+                           <input id="edit_photoUpload" class="file-upload" type="file" accept="image/*"/>
                         </div>
                         <div class="containerform">
                            <div class="group-account div-name">
