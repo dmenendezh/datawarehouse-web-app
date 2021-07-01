@@ -40,3 +40,8 @@ npm run start:server
 9. Acceder a la aplicación mediante la URL:
 
 <a href="http://127.0.0.1:5500/frontend">http://127.0.0.1:5500/frontend</a>
+
+10. Usuario administrador para acceder a la aplicación:
+
+mail: admin@datawarehouse.com <br>
+password: admin <br>
