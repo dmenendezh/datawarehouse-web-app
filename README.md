@@ -10,7 +10,7 @@ git clone https://github.com/dmenendezh/datawarehouse-web-app.git
 
 2. Instalar NodeJS y XAMPP.
 
-3. Instalar paquetes npm requeridos por el proyecto.
+3. Instalar paquetes npm requeridos por el proyecto. Para esto, posicionarse dentro de la carpeta backend y desde allí ejecutar el siguiete comando:
 
 ```bash
 npm install
@@ -29,7 +29,7 @@ DB_NAME=dw_webapp <br>
 DB_USER=root<br>
 
 
-7. Iniciar el servidor mediante la consola "Terminal" ejecutar el comando: 
+7. Iniciar el servidor mediante la consola "Terminal". Para esto, posicionarse dentro de la carpeta backend y desde allí ejecutar el siguiete comando:
 
 ```bash
 npm run start:server
